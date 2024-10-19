@@ -364,9 +364,34 @@
 </li>
 </ul>
 <p>到了这里，编码部分就结束了。</p>
+<h2 id="四，生成模型"><a href="#四，生成模型" class="headerlink" title="四，生成模型"></a>四，生成模型</h2><p><img src="/../assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B.png" alt="生成模型"></p>
 </li>
 </ol>
-<h1 id="音频导入"><a href="#音频导入" class="headerlink" title="音频导入"></a>音频导入</h1>
+<h1 id="音频导入"><a href="#音频导入" class="headerlink" title="音频导入"></a>音频导入</h1><p>在模型生成之后，我们就要进行音频导入各种了，也就是<strong>把模型生成的音频替换成自己的音频</strong>。</p>
+<p>！！！注意！！你需要提前准备好<strong>wav格式的音频</strong>！！！</p>
+<h3 id="第一步-我们需要找到天问Block的文件夹"><a href="#第一步-我们需要找到天问Block的文件夹" class="headerlink" title="第一步 我们需要找到天问Block的文件夹"></a>第一步 我们需要找到天问Block的文件夹</h3><ul>
+<li>如果你没有修改下载路径，这个文件夹大概率在c盘下。</li>
+</ul>
+<p><img src="/../assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E5%A4%A9%E9%97%AEBlock.png" alt="天问Block"></p>
+<ul>
+<li>点进文件夹【天问Block】—&gt;【asrpro】，我们会看到几个会用到的文件</li>
+</ul>
+<p><img src="/../assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/asrpro%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="asrpro文件夹"></p>
+<ul>
+<li>点进【voive】—&gt;【mp3】文件夹，我们可以看到系统生成的音频，然后将<strong>你的音频</strong>重命名为生成的音频<strong>（把你音频的名字改成生成音频的名字）</strong></li>
+</ul>
+<p><img src="/../assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E9%9F%B3%E9%A2%91.png" alt="音频"></p>
+<ul>
+<li>回到原本文件夹，进入【asrpro】—&gt;【wav】文件夹，将自己修改为名字的音频粘贴到【wav】文件夹（注意！<strong>音频一定要是wav格式</strong>）</li>
+</ul>
+<p><img src="/../assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/wav.png" alt="wav"></p>
+<ul>
+<li>退回到【asrpro】文件夹，双击【一键转语音.bat】，随后回到【voive】—&gt;【mp3】文件夹，会发现，音频已经完成替换。</li>
+</ul>
+<h1 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h1><p>回到天问Block，点击2M编译下载，等待烧录完成。</p>
+<p><img src="/../assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/2M%E7%BC%96%E8%AF%91%E4%B8%8B%E8%BD%BD.png" alt="2M编译下载"></p>
+<p>OK，等你完成这一步，你的语音识别模块就已经完成啦！</p>
+
         </div>
 
         
