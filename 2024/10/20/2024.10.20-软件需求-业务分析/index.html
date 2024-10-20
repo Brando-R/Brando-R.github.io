@@ -13,7 +13,7 @@
 
 
 
-<title>软件需求与建模——需求工程框架 | Hexo</title>
+<title>软件需求与建模——业务分析 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">软件需求与建模——需求工程框架</h1>
+            <h1 class="post-title">软件需求与建模——业务分析</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 20, 2024&nbsp;&nbsp;14:53:09</a>
+                        Date: <a href="#">October 20, 2024&nbsp;&nbsp;18:44:37</a>
                         </span>
                     
                     
@@ -218,115 +218,198 @@
         </header>
 
         <div class="post-content">
-            <h1>从系统分析到需求工程</h1>
+            <h1>系统上下文分析</h1>
 <ul>
-<li>
-<h2 id="系统分析"><strong>系统分析</strong></h2>
-<ul>
-<li>系统分析主要是对现有业务系统进行研究，<em>确定新系统中软件的边界</em>*（对边界进行划分）*<em>和功能。</em></li>
-<li>系统分析的结果一般是<strong>软件的需求</strong>，故也常被称为需求分析；</li>
-<li>系统设计是决定如何实现软件功能的活动。</li>
-<li>传统上认为，系统分析决定“做什么”，系统设计决定“怎么做”。“谁来做”</li>
+<li><strong>系统上下文分析：</strong> 理解现实世界中的问题和用户的需要，并对如何满足这些需要提出解决方案。</li>
 </ul>
-</li>
-<li>
-<h2 id="需求工程">需求工程</h2>
-<ul>
-<li>需求工程是<em>用科学的方法，发现、记录和确认</em>需求的学科。</li>
-</ul>
-</li>
-<li>
-<p>需求工程认为软件需求是一个持续的过程，以<strong>迭代</strong>方式贯穿于软件开发的全周期。</p>
-</li>
-</ul>
-<h1>需求工程框架概览</h1>
-<p>​	<img src="/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6/assets/blog_res/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6.assets/%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6.png" alt="需求工程框架"></p>
-<ul>
-<li><strong>系统上下文：</strong> 系统所处*<u>环境中与定义、理解和解释系统需求相关</u>*的部分。<strong>上下文是需求的主要来源</strong>。</li>
-<li><strong>核心活动：</strong> 需求过程的本质活动。包括需<em>求获取、需求文档化、需求协商</em>。<strong>体现了需求工程的内容维度、共识维度和文档化维度。</strong></li>
-<li><strong>横切活动：</strong> 对需求过程有重大影响，贯穿始终。包括<u>需求确认，需求管理</u>。为核心活动提供支持，并保证需求结果的正确性。</li>
-<li><strong>需求活动：</strong> 核心活动+横切活动</li>
-<li><strong>需求制品：</strong> 从不同层次描述需求，<strong>分三类</strong> ：<u>高层次目标、需求场景、面向方案的需求</u>。</li>
-</ul>
-<h1>系统上下文</h1>
-<ul>
-<li><strong>系统的上下文</strong> （Context）指的是<mark>目标系统、与之交互的用户和外部系统</mark>.</li>
-<li>系统上下文亦即需求概念中的问题领域。</li>
-<li><strong>结构化</strong> 的系统上下文分析，将它分为<mark>4刻面</mark>：
-<ul>
-<li><strong>主体刻面：</strong> 上下文的主要方面。含有软件系统必须处理或包含的实体和事件；</li>
-<li><strong>使用刻面：</strong> 上下文系统被使用的有关情况；</li>
-<li><strong>IT系统刻面：</strong> 运行或技术环境相关的所有方面；</li>
-<li><strong>开发刻面：</strong> 影响系统开发的所有方面。</li>
-</ul>
-</li>
-</ul>
-<h1>需求活动</h1>
+<h2 id="一，在问题定义上达成共识">一，在问题定义上达成共识</h2>
 <ul>
 <li>
-<p><strong>需求活动是需求工程的中心。</strong> 通过活动达到目的，产生结果。</p>
-<h2 id="以下5个需求活动之间，存在-mark-交互关系-mark-。">以下<strong>5个需求活动</strong>之间，存在<mark>交互关系</mark>。</h2>
-</li>
-<li>
-<p><strong>需求获取：</strong> 从涉众、现有文档或已有软件系统（称为遗留系统）中得到和改进对需求的理解，在需求的内容维度取得进展。</p>
-</li>
-<li>
-<p><strong>需求文档化：</strong> 已知的需求只有文档化，才能进行商讨和确认，指导软件开发工作。需求文档化主要<strong>关注各种文档的规范、格式、写法。</strong></p>
-</li>
-<li>
-<p><strong>需求协商：</strong> 不同涉众的要求和期望不同，会导致需求冲突。需求协商就是要<strong>识别需求冲突，并对冲突加以解决。需求协商也是核心活动。</strong></p>
-</li>
-<li>
-<p><strong>需求确认：</strong> 确认活动是为了保证需求的正确性。包括——</p>
+<p>做法：<strong>将问题用标准化格式记录</strong>下来。</p>
+<table>
+<thead>
+<tr>
+<th>问题要素</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>问题是…</td>
+<td>面临的问题</td>
+</tr>
+<tr>
+<td>影响到…</td>
+<td>受问题影响的涉众</td>
+</tr>
+<tr>
+<td>导致…</td>
+<td>问题对涉众和商业活动的影响</td>
+</tr>
+<tr>
+<td>方案优点…</td>
+<td>新解决方案的优点</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><strong>需求制品的确认：</strong> 按照内容、文档化和共识三个维度确认制品没有缺陷，才可用于开发过程，或纳入合同文本。</li>
-<li><strong>核心活动的确认：</strong> 确认核心活动是否符合规定的流程（过程规约，活动规则）。为过程保障活动。过程正确，才能得到可信的结果。</li>
-<li><strong>系统上下文考虑因素的确认：</strong> 确认是否对上下文因素进行了充分的、合规的考虑。过程保障活动。</li>
-</ul>
-</li>
 <li>
-<p><strong>需求管理：</strong> 维持需求过程有序进行。包括——</p>
-<ul>
-<li><strong>需求制品管理：</strong> 确定需求的优先级，需求的持久化保存，需求的配置及变更管理，需求跟踪关系维护</li>
-<li><strong>需求活动管理：</strong> 对需求活动进行规划和控制，确保需求过程有效和高效。</li>
-<li><strong>系统上下文观察：</strong> 识别系统上下文的变更。一个相关上下文的变更，会要求一个或多个需求活动的执行，或者活动的重新规划。</li>
+<p>例子</p>
+<table>
+<thead>
+<tr>
+<th>问题要素</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>问题是…</td>
+<td>销售订单不准确。</td>
+</tr>
+<tr>
+<td>影响到…</td>
+<td>销售下单人员，客户，制造者，运输以及客服。</td>
+</tr>
+<tr>
+<td>导致…</td>
+<td>增加废料，过高的处理成本，客户不满意，而且利润减少。</td>
+</tr>
+<tr>
+<td>方案优点…</td>
+<td>创建一个新系统解决处理以下问题，包括：- 在入口增加销售订单的准确性，- 改善给管理部门的销售数据报表，- 最后，更高的收益</td>
+</tr>
+</tbody>
+</table>
+</li>
 </ul>
 </li>
 </ul>
-<h1>需求制品</h1>
+<h2 id="二，理解根本原因——问题背后的问题">二，理解根本原因——问题背后的问题</h2>
 <ul>
 <li>
-<p>需求制品即<strong>需求活动产生的成果文档</strong>。</p>
+<p>做法：采用<strong>鱼骨图</strong>和<strong>帕累托图</strong></p>
+<p><img src="/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90/assets/blog_res/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90.assets/%E9%B1%BC%E9%AA%A8%E5%9B%BE%E5%92%8C%E5%B8%95%E7%B4%AF%E6%89%98%E5%9B%BE.png" alt="鱼骨图和帕累托图"></p>
 </li>
-<li>
-<p>由于<strong>需求的层次性</strong>，需求文档也分成——</p>
-<ul>
-<li>
-<p><strong>目标(文档)：</strong> 在系统上下文中建立的愿景。典型目标文档即<mark>“愿景”</mark>。描述对软件的<mark>高层需要</mark>(Needs)，以及从使用者角度提出的<mark>特性</mark>（Features）</p>
-<ul>
-<li><strong>愿景</strong>是对期望简要、精确的描述。期望是对当前不满意作改善的构想。</li>
-<li><strong>愿景</strong>仅定义目标，不说明如何实现。但愿景是**可验证（可实现）**的。</li>
-<li>在整个开发周期，愿景是<strong>涉众的指导思想</strong>。</li>
 </ul>
-</li>
-<li>
-<p><strong>场景：</strong> 对软件需求的<mark>形象化描述</mark>。</p>
+<h2 id="三，识别涉众和用户">三，识别涉众和用户</h2>
 <ul>
-<li>场景是<strong>需求的主要载体</strong>。</li>
-<li><strong>用例创建从识别系统参与者（对涉众的进一步细化）开始，</strong> 然后根据参与者目标，识别和确定参与者与系统交互的情景。</li>
-</ul>
-</li>
-<li>
-<p><strong>面向方案的需求：</strong> 与所用软件工程方法接轨的需求文档。促进（加速）下一步的软件开发</p>
+<li>动机：必须找出<strong>非用户类涉众的需要</strong></li>
+<li><strong>做法：</strong> 问以下问题
 <ul>
-<li>传统方法中，由场景进一步定义系统的<u>数据视图、功能视图和行为视图</u>；</li>
-<li><strong>面向对象的方法</strong>中，基于用例，得出<u>领域类图（E-R图前身）、系统顺序图（人机交互）、操作契约</u>等。</li>
+<li>谁是系统的使用者?</li>
+<li>谁花钱购买此系统?</li>
+<li>系统所产生的输出还会影响谁?</li>
+<li>系统发布和部署时需要谁评估和批准?</li>
+<li>是否还有其需要必须考虑的内部或外部用户?</li>
+<li>谁维护这个新的系统?还有谁会在意这个系统?</li>
 </ul>
 </li>
 </ul>
+<h2 id="四，定义解决方案系统边界">四，定义解决方案系统边界</h2>
+<ul>
+<li>动机：把世界划分成**“我们的系统”<strong>和</strong>“与我们的系统交互的事物”**。</li>
+<li>做法：<strong>识别</strong>我们系统的参与者（actor）。即通过<strong>接口或界面与我们的系统发生交互的人员或事物</strong>（装置、设备、系统等）</li>
+<li><strong>参与者</strong>（用户或者其他系统）<strong>在系统边界之外</strong>，通过I/O界面与系统交互。<strong>识别了参与者就明确了系统边界</strong>。</li>
+</ul>
+<h2 id="五、确定解决方案将受的约束">五、确定解决方案将受的约束</h2>
+<ul>
+<li>
+<p>说明：<strong>约束限制</strong>了我们提供解决方案的自由度</p>
 </li>
 <li>
-<p><mark>需求制品是可选的</mark></p>
+<p>动机：进一步理解系统上下文，<strong>以免错误地定义和设计系统</strong>。</p>
+</li>
+<li>
+<p>做法：通过检查表启发思考。</p>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>约束</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作</td>
+<td>销售订单数据的精确拷贝必须保存到旧数据库中长达一年。</td>
+<td>丢失数据的风险太大，我们需要并行运行3个月。</td>
+</tr>
+<tr>
+<td>系统</td>
+<td>应用在服务器上运行所需存储空间必须小于20MB。</td>
+<td>我们受限于服务器有限的可用存储空间。</td>
+</tr>
+<tr>
+<td>设备预算</td>
+<td>系统必须在现有服务器和主机上开发，用户所需的客户机硬件可以提供。</td>
+<td>我们需要控制成本和维护现有系统。</td>
+</tr>
+<tr>
+<td>人员预算</td>
+<td>人力资源已固定，没有外包可能。</td>
+<td>目前的预算要求固定运作成本。</td>
+</tr>
+<tr>
+<td>技术要求</td>
+<td>必须使用新的面向对象的技术。</td>
+<td>我们相信此技术可以提高生产效率，增强软件的可靠性。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h1>业务建模</h1>
+<ul>
+<li><strong>业务建模：</strong> 给出组织机构的业务描述。</li>
+<li>**目的： **
+<ul>
+<li>理解现存机构的结构和运作机制</li>
+<li><strong>确保</strong>客户、最终用户和开发人员对机构<strong>有共同的理解</strong></li>
+<li>了解如何部署一个新系统以提高效率以及哪些现存系统会受新系统的影响</li>
+</ul>
+</li>
+<li>业务建模是针对复杂的信息管理系统，<em>对问题分析5步法的充实、扩展</em>。业务建模是<strong>可选</strong>过程</li>
+<li>统一过程（UP）推荐的<strong>业务建模方法</strong>是使用<mark><strong>UML语言</strong></mark>，通过<strong>业务用例和业务对象表示业务模型</strong>。</li>
+<li><strong>业务用例</strong>=业务场景的描述</li>
+<li><strong>业务对象</strong>=业务活动涉及的人、具体物、抽象物、概念等项目</li>
+<li><mark>业务用例描述</mark>业务参与者与业务系统交互的情景。</li>
+<li><mark>业务参与者</mark>可以是业务的服务对象，机构内部工作人员，外部机构等。</li>
+</ul>
+<h1>业务建模举例</h1>
+<ul>
+<li>
+<p><mark>格式</mark>：用例名，业务参与者，前置条件，后置条件，主要流程。</p>
+</li>
+<li>
+<p>举例：</p>
+<table>
+<thead>
+<tr>
+<th>用例名</th>
+<th>用户登录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务参与者</td>
+<td>学生</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>学生拥有有效的账户信息</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>学生成功登录系统，可以访问个人资料和考试相关功能</td>
+</tr>
+<tr>
+<td>主要流程</td>
+<td>1. 在登录界面输入自己的用户名和密码（用户凭证）2. 点击登录按钮，提交自己的凭证信息。3. 考试系统后端处理登录请求4. 登陆成功跳传到主页面</td>
+</tr>
+</tbody>
+</table>
 </li>
 </ul>
 
@@ -343,7 +426,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://brando-r.github.io/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6/">http://brando-r.github.io/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6/</a></span>
+                        <span><a href="http://brando-r.github.io/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90/">http://brando-r.github.io/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90/</a></span>
                     </p>
                 
                 
@@ -380,10 +463,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90/">软件需求与建模——业务分析</a>
             
-            
-            <a class="next" rel="next" href="/2024/10/19/2024.10.19-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%AF%BC%E8%AE%BA/">软件需求与建模——导论</a>
+            <a class="next" rel="next" href="/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6/">软件需求与建模——需求工程框架</a>
             
         </section>
 
