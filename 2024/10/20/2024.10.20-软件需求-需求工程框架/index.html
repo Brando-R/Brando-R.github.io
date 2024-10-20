@@ -13,7 +13,7 @@
 
 
 
-<title>Tag | Hexo</title>
+<title>软件需求与建模——需求工程框架 | Hexo</title>
 
 
 
@@ -124,24 +124,197 @@
     }
 </script>
             <div class="main">
-                
-
-    <div class="container">
-        <div class="post-wrap tags">
-            <h2 class="post-title">-&nbsp;Tag Cloud&nbsp;-</h2>
-
-            <div class="tag-cloud-tags">
-                
-                    <a href="/tags/%E5%85%B6%E4%BB%96/">其他<small>(1)</small></a>
-                
-                    <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记<small>(2)</small></a>
-                
-                    <a href="/tags/blog/">blog<small>(1)</small></a>
-                
-            </div>
-        </div>
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
     </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
 
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模——需求工程框架</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 20, 2024&nbsp;&nbsp;14:53:09</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>从系统分析到需求工程</h1>
+<ul>
+<li>
+<h2 id="系统分析"><strong>系统分析</strong></h2>
+<ul>
+<li>系统分析主要是对现有业务系统进行研究，<em>确定新系统中软件的边界</em>*（对边界进行划分）*<em>和功能。</em></li>
+<li>系统分析的结果一般是<strong>软件的需求</strong>，故也常被称为需求分析；</li>
+<li>系统设计是决定如何实现软件功能的活动。</li>
+<li>传统上认为，系统分析决定“做什么”，系统设计决定“怎么做”。“谁来做”</li>
+</ul>
+</li>
+<li>
+<h2 id="需求工程">需求工程</h2>
+<ul>
+<li>
+<p>需求工程是<em>用科学的方法，发现、记录和确认</em>需求的学科。</p>
+</li>
+<li>
+<p>需求工程认为软件需求是一个持续的过程，以<strong>迭代</strong>方式贯穿于软件开发的全周期。</p>
+</li>
+<li>
+<p><strong>需求工程框架</strong></p>
+<p><img src="/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6/assets/blog_res/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6.assets/%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6.png" alt="需求工程框架"></p>
+<ul>
+<li><strong>系统上下文：</strong> 系统所处*<u>环境中与定义、理解和解释系统需求相关</u>*的部分。<strong>上下文是需求的主要来源</strong>。</li>
+<li>**核心活动： **需求过程的本质活动。包括需<em>求获取、需求文档化、需求协商</em>。<strong>体现了需求工程的内容维度、共识维度和文档化维度。</strong></li>
+<li><strong>横切活动：</strong> 对需求过程有重大影响，贯穿始终。包括<u>需求确认，需求管理</u>。为核心活动提供支持，并保证需求结果的正确性。</li>
+<li><strong>需求活动：</strong> 核心活动+横切活动</li>
+<li><strong>需求制品：</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>需求工程框架概览</h1>
+<h1>系统上下文</h1>
+<h1>需求活动</h1>
+<h1>需求制品</h1>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6/">http://brando-r.github.io/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/10/19/2024.10.19-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%AF%BC%E8%AE%BA/">软件需求与建模——导论</a>
+            
+        </section>
+
+
+    </article>
+</div>
 
             </div>
             <footer id="footer" class="footer">
