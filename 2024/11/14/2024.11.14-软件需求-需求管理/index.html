@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>软件需求与建模14——需求管理 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模14——需求管理</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 14, 2024&nbsp;&nbsp;1:17:57</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>一，需求管理目标</h1>
+<ul>
+<li>作为横切活动的需求管理，包含了<mark><strong>三个方面的目标</strong></mark>：
+<ul>
+<li>观察系统上下文，以侦测系统上下文的变化；</li>
+<li>管理需求工程活动的执行</li>
+<li>管理需求制品</li>
+</ul>
+</li>
+</ul>
+<h1>二，管理系统上下文</h1>
+<ul>
+<li>系统上下文是<strong>需求的来源</strong>。</li>
+<li>管理系统上下文主要是<strong>观察其有无变化</strong>。<mark><strong>目标</strong></mark>是发现上下文变化并估计其影响，在需求中反映这些影响。</li>
+<li>观察上下文的<mark><strong>技术</strong></mark>:
+<ul>
+<li><mark><strong>上下文扫描</strong></mark>：系统地查找上下文环境中的变化。这些变化或周期性的，或偶发的。</li>
+<li><mark><strong>上下文监控</strong></mark>：通过不断记录上下文的演化过程达成。包含记录和解释上下文的变化。</li>
+<li><mark><strong>上下文预测</strong></mark>：在上下文扫描和上下文监控的基础上，根据当前知识和历史情况得到与未来上下文发展有关的信息。</li>
+</ul>
+</li>
+<li>结构化的<mark><strong>上下文观察</strong></mark>：区分<strong>4种上下文刻面</strong>的观察。包括主题刻面的观察，使用刻面的观察，IT系统刻面的观察，开发刻面的观察</li>
+<li>上下文中所有<strong>需求来源、上下文对象、上下文对象的属性和关联</strong>都可能发生变化：
+<ul>
+<li><mark><strong>需求来源变化</strong></mark>：上下文中可能会出现新的需求来源，这就可能出现新的需求，或已有需求的变化</li>
+<li><mark><strong>上下文对象的变化</strong></mark>：一个已知的上下文对象会发生变化，或者会出现一个新的上下文对象</li>
+<li><mark><strong>上下文对象属性与关系的变化</strong></mark>：二者都可能变</li>
+</ul>
+</li>
+<li>上下文观察要针对具体情境选择合适的<strong>观察技术</strong>。</li>
+</ul>
+<h1>三，管理需求过程</h1>
+<ul>
+<li>需求工程过程的活动顺序，<strong>不是固定不变</strong>的。</li>
+<li>需求工程活动的管理旨在<strong>监控、控制并调整</strong>由<strong>获取、文档化、协商和确认活动</strong>组成的工作流程。为此需要用到项目管理技术。</li>
+<li><mark><strong>管理方法</strong></mark>有两种：
+<ul>
+<li><mark><strong>面向阶段的方法</strong></mark>：对所有需求制品采用相同的活动顺序；</li>
+<li><mark><strong>情景方法</strong></mark>：根据对已有需求制品的当前状态的评估来决定下一步要执行的活动。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-面向阶段的方法">1.面向阶段的方法</h2>
+<ul>
+<li>
+<p>面向阶段的方法将需求工程活动包含在一个带有<strong>反馈环</strong>的瀑布模型中，原则上顺序执行。这种方式仅适用于<strong>待开发的系统与以前的系统</strong>相同或相似时。</p>
+<p><img src="https://s2.loli.net/2024/11/14/XnIS8eyZN25CmUi.png" alt="反馈环"></p>
+</li>
+<li>
+<p>如果所有需求制品都通过了确认，则整个过程就结束了。这种方法只能在已很好地理解了领域或系统的情况下使用（即<strong>绝大部分需求以前已获取并文档化过</strong>）。</p>
+</li>
+<li>
+<p>对于<strong>没有经验的系统</strong>，或者需要采用创新解决方案时，面向阶段的方法并不适合。</p>
+</li>
+</ul>
+<h2 id="2-情景方法">2.情景方法</h2>
+<ul>
+<li>
+<p>情景方法<strong>根据需求制品的状态及当前的过程情况</strong>，决定下一步执行哪个活动。</p>
+</li>
+<li>
+<p>情景方法旨在通过<strong>内容、共识和文档化</strong>这3个维度来<strong>确定需求工程活动的执行顺序</strong>，从而得到最好的执行路径。(为了防止开展进展很小，或没有实际进展的活动)</p>
+</li>
+<li>
+<p><mark><strong>情景方法</strong></mark>分为<strong>两个步骤</strong>:</p>
+<ol>
+<li>
+<p>需求制品的评估</p>
+<p>为了<strong>减少个体主观因素差异</strong>，按以下表格从内容、文档化、共识三方面评价制品：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>+（无缺陷）</th>
+<th>0（较小缺陷）</th>
+<th>-（重大缺陷）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>内容</strong>(完备，无歧义，通用)</td>
+<td>制品符合定义的标准</td>
+<td>制品不符合某些定义的标准</td>
+<td>制品不符合大部分定义的标准</td>
+</tr>
+<tr>
+<td><strong>文档化/规约</strong>(是否与给定的文档化/规约规则一致？)</td>
+<td>制品符合定义的文档化/规约规则</td>
+<td>制品符合定义的文档化/规约规则</td>
+<td>制品违反了大部分定义的文档化/规约规则</td>
+</tr>
+<tr>
+<td><strong>共识</strong></td>
+<td>对制品达成一致，即不存在未解决的、已知的冲突</td>
+<td>制品中存在相关的、未解决的冲突</td>
+<td>制品中存在相关的、未解决的冲突</td>
+</tr>
+</tbody>
+</table>
+<p>按照上表给每个需求制品从三个方面分配一个评估值。</p>
+</li>
+<li>
+<p>决定下一步执行的活动</p>
+<ul>
+<li>根据上一步的评估，可以决定下一步活动。
+<ul>
+<li>如果在三个维度没有明显缺陷，就执行确认活动</li>
+<li>一个维度上的<strong>重大缺陷</strong>比另一个维度上的<strong>较小缺陷</strong>具有<strong>更高的优先级</strong></li>
+<li>一个维度上的较小缺陷比另一个维度上的没有缺陷具有更高的优先级；</li>
+<li>如果多个维度上的评估结果<strong>相同</strong>，则<strong>内容维度的优先级高于文档化维度，文档化维度的优先级高于共识维度</strong>。</li>
+</ul>
+</li>
+<li>在<strong>内容</strong>方面推进。如果文档化和共识维度具有相同程度的缺陷，<strong>文档化维度的优先级要高于共识维度</strong>。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-两种方法比较">3.两种方法比较</h2>
+<ul>
+<li>面向阶段的方法<strong>不够灵活</strong>，适用于<strong>业务熟悉、有开发经验的系统</strong>，简单易行；</li>
+<li>情景方法更加<strong>灵活</strong>，为需求制品开发提供了<strong>迭代方法</strong>。适用于开发<strong>创新性需求或上下文不熟悉的系统</strong>的需求，适应这类系统常见的、快速的变化。所需资源略多。</li>
+</ul>
+<h2 id="4-管理需求制品">4.管理需求制品</h2>
+<ul>
+<li>
+<p>需求工程活动会获取大量需求制品。每一个需求制品都有特定的属性，并与其他需求制品和设计、测试制品关联。</p>
+</li>
+<li>
+<p>管理需求制品的<mark><strong>目标</strong></mark>是持续追踪所有需求制品、这些制品的相关属性和关联、它们的演化情况等。</p>
+</li>
+<li>
+<p>管理需求制品的<mark><strong>5项子任务</strong></mark>：</p>
+<ul>
+<li><strong>需求属性的定义</strong>：需求属性是对需求的描述</li>
+<li><strong>维持需求可追踪性</strong>：需求应该既能追踪到源头，也能追踪到其精化和实现，此外还要关联到确认和质量保证所用相关制品。</li>
+<li><mark><strong>需求变更管理</strong></mark>：需求在开发过程中不可避免要发生变化。需求变更管理应该<strong>保证以系统化的方式处理变更，并且将变更一致地集成到已有的需求制品</strong>。变更管理需要需求具有<strong>可跟踪性</strong>。</li>
+<li><mark><strong>需求配置管理</strong></mark>：需求制品的版本会不断演化。需求制品的一个配置<strong>将相互关联的各种需求制品的不同版本进行组合</strong>。配置管理可<strong>避免配置项的错误搭配</strong>。</li>
+<li><strong>需求优先级排序</strong>：为了<strong>保证各种需求制品消耗与其重要性一致</strong>的资源，需要给需求制品排优先级。</li>
+</ul>
+<h3 id="4-1可跟踪性支持">4.1可跟踪性支持</h3>
+<ul>
+<li>需求管理的一项<strong>本质任务</strong>是在整个开发过程中支持需求的可跟踪性。</li>
+<li>可追踪性状态<strong>影响了所开发系统的质量</strong>。</li>
+<li><strong>可追踪性</strong>包括：
+<ul>
+<li><strong>前可追踪性</strong>：一个需求制品与其前驱制品(上下文刻面的需求来源)之间可追踪；</li>
+<li><strong>后可追踪性</strong>：一个需求制品到其后继制品（详细设计、代码等）可追踪。</li>
+</ul>
+</li>
+<li>制品之间存在的可追踪关系，通常可按条件、内容、抽象、演化、杂项等5种大类分成20多个小类。</li>
+<li>可以在描述需求文档中，注明需求之间的追踪关系（通过引用参考、链接等）；也可以使用图、表说明需求制品之间的追踪关系。</li>
+<li>为了在特定的项目中管理需求制品的可追踪性，需求工程师要<strong>定义本项目的可追踪性模型，制定可追踪性信息记录策略和使用策略</strong>。(需要使用大量的项目资源，在敏捷开发或小型项目中不适合采用)实际上，上下文——需求——实现之间的追踪性，可以通过设计和实现方法（如面向对象的软件工程方法）的特点自然达成</li>
+</ul>
+<h3 id="4-2设置需求优先级">4.2设置需求优先级</h3>
+<ul>
+<li>优先级排序的结果，可以是量化的顺序，也可以是有限等级（类别）。</li>
+<li>需求的优先级决定需求被处理或实现的顺序。</li>
+<li>定义需求的优先级要做好以下<mark><strong>四项准备活动</strong></mark>：
+<ul>
+<li>确定需要涉及的涉众</li>
+<li>选择进行优先级排序的制品</li>
+<li>定义将使用的优先级排序标准</li>
+<li>选择合适的优先级排序技术</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3配置与变更管理">4.3配置与变更管理</h3>
+<ul>
+<li>
+<p><strong>配置管理</strong>是对需求的各种制品及各制品的不同版本进行组合、跟踪，以管理需求制品的不断演化，避免混乱。配置管理基于版本管理。</p>
+</li>
+<li>
+<p>可以从制品维度和版本维度理解配置管理。</p>
+<ul>
+<li>制品维度中，配置管理考虑不同的需求制品；</li>
+<li>版本维度中，管理制品的不同变更状态。</li>
+</ul>
+</li>
+<li>
+<p>需求的配置管理可以从文档层、制品层或属性层进行。<strong>层次越低越复杂，工作量越大</strong>。</p>
+</li>
+<li>
+<p><strong>版本、配置和基线</strong>是配置管理的基本概念</p>
+<ul>
+<li><strong>版本</strong>：需求制品或软件产品的一个已定义状态。版本通过一个唯一的编号标识。编号由版本号和增量号构成。</li>
+<li><strong>配置</strong>：特定版本的一组相关的制品组成了一个配置。配置具有唯一标识；配置中的各制品具有一致性；</li>
+<li><strong>基线</strong>：一个稳定的配置即基线。基线一般是一个发布版本，对客户是可见的。而一般的配置是内部的，外部客户不可见。基线是变更管理的主体。<strong>因为基线所包含的配置项不可随意更改，所以进行变更管理。</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>初期需求活动</strong>产生的需求制品还不稳定，变更可以相对<strong>自由地进行</strong>；</p>
+</li>
+<li>
+<p>如要<strong>变更基线所包含的配置项</strong>，则必须依照单位或项目组定义的<strong>变更管理流程进行</strong>。</p>
+</li>
+<li>
+<p>为了执行变更管理，必须成立由相关涉众和决策人员代表组成的**“变更控制委员会”**。委员会履行对变更的控制和决策职责。</p>
+</li>
+<li>
+<p>为了有效管理，<strong>变更请求必须文档化</strong>。一般按照变更请求模板（可自行定义或裁剪）写变更请求。</p>
+</li>
+<li>
+<p>变更控制委员会或其成员按照以下<strong>流程处理变更请求</strong>：</p>
+<ol>
+<li>对变更请求分类；</li>
+<li>对变更请求做影响分析；</li>
+<li>评估变更请求。如果决定拒绝，则转6.结束；</li>
+<li>对接受的变更请求作优先级排序；</li>
+<li>监控变更的执行和集成；</li>
+<li>结束。</li>
+</ol>
+</li>
+</ul>
+<h1>重点！！！</h1>
+<ul>
+<li>需求管理包括对需求上下文监控、需求过程管理和需求制品的管理。</li>
+<li>上下文监控主要关注需求来源变化、上下文对象的变化、上下文对象属性的变化。</li>
+<li>需求过程管理主要关注需求活动的先后顺序。可以用瀑布模型，也可以基于情景判断。</li>
+<li>需求制品的管理主要关注需求属性的定义、需求可追踪性支持、需求变更管理、需求配置管理、需求优先级排序。</li>
+</ul>
+</li>
+</ul>
+<p>​</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/11/14/2024.11.14-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E7%AE%A1%E7%90%86/">http://brando-r.github.io/2024/11/14/2024.11.14-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E7%AE%A1%E7%90%86/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/11/14/2024.11.14-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84-%E5%AF%BC%E8%AE%BA/">软件架构与设计1——导论</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>

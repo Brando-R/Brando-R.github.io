@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>软件需求与建模6——故事板和原型的应用 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模6——故事板和原型的应用</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 29, 2024&nbsp;&nbsp;1:12:56</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>一，故事板</h1>
+<h2 id="一，故事板的简介">一，故事板的简介</h2>
+<ul>
+<li>
+<p><strong>以可视、简单、粗陋的方式</strong>展示模糊不清、抽象的过程或概念。</p>
+</li>
+<li>
+<p>用于开发团队与其他涉众之间的讨论和交流</p>
+</li>
+<li>
+<p>特别适合<strong>厘清界面、功能等方面疑点</strong>，确认客户想要的解决方案。</p>
+</li>
+<li>
+<p>故事板的精髓是容易改动，启发思考！</p>
+</li>
+<li>
+<p>故事板<mark><strong>优点</strong></mark></p>
+<ul>
+<li>非常廉价</li>
+<li>是用户友好、非正式和交互式的</li>
+<li>为系统的用户接口提供早期的评审</li>
+<li>易于创建和修改</li>
+</ul>
+</li>
+</ul>
+<h2 id="二，故事板类型">二，故事板类型</h2>
+<ul>
+<li>三类：<strong>被动式</strong>、<strong>主动式</strong>和<strong>交互式</strong>
+<ul>
+<li><mark><strong>被动式：</strong></mark> 演示时需要人帮忙；</li>
+<li><mark><strong>主动式：</strong></mark> 可以自己演示；</li>
+<li><mark><strong>交互式：</strong></mark> 演示时可以由人操作和交互，接近原型系统。</li>
+</ul>
+</li>
+</ul>
+<h2 id="三，故事板用法">三，故事板用法</h2>
+<ul>
+<li>在软件开发中，故事板常用于描述人机接口细节，这是软件开发最难捉摸的部分。</li>
+<li>对基于用户的系统，故事板对每个活动要说明<strong>三个基本要素</strong>：
+<ul>
+<li><strong><mark>系统参与者</mark>：</strong> 可以是人，也可以是其他系统或装置。即系统的“参与者”</li>
+<li><strong><mark>参与者与系统交互的行为</mark></strong></li>
+<li><strong><mark>元素提供交互如何发生的描述</mark></strong>。一般要表明事件、状态和状态转换。</li>
+</ul>
+</li>
+</ul>
+<h1>二，原型</h1>
+<h2 id="一，原型简介">一，原型简介</h2>
+<ul>
+<li>
+<p>原型即<strong>系统的未完成形式，或者缩小比例的形式</strong></p>
+</li>
+<li>
+<p><mark><strong>优点：</strong></mark></p>
+<ul>
+<li>有助准确识别需求，最终节约时间和成本</li>
+<li>促进和增强用户的参与</li>
+</ul>
+</li>
+<li>
+<p><mark><strong>缺点：</strong></mark></p>
+<ul>
+<li>仅关注局部原型导致需求不充分</li>
+<li>用户会混淆原型和实际系统</li>
+<li>花费过多时间和努力在原型上会增加成本，影响进度</li>
+</ul>
+<h2 id="二，原型类别">二，原型类别</h2>
+</li>
+<li>
+<p>从原型的维度分：<strong>水平</strong>，<strong>纵向</strong></p>
+<ul>
+<li><mark><strong>水平原型：</strong></mark> 提供系统的全景视图，关注用户与系统的交互。作用有
+<ul>
+<li>确认用户界面需求和系统范围</li>
+<li>展示将要得到的系统</li>
+<li>在开发初期作时间、成本、效果的评估</li>
+</ul>
+</li>
+<li><mark><strong>纵向原型：</strong></mark> 展示单项功能的实现。主要为获取单一功能的详细需求。作用有
+<ul>
+<li>精化数据库设计</li>
+<li>获取数据容量及系统接口需求，以作网络规模和性能规划</li>
+<li>通过深入实际系统功能得到复杂的需求</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>按模型的建立和使用方式，可分为<strong>抛弃式原型</strong>，<strong>演化式原型</strong></p>
+<ul>
+<li><mark><strong>抛弃式原型：</strong></mark>
+<ul>
+<li>原型仅在需求过程中使用；</li>
+<li>在产品中不采用原型的代码。</li>
+<li><mark><strong>优点：</strong></mark>
+<ul>
+<li>可以快速低成本构造</li>
+<li>尽早获得反馈，改正需求错误</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><mark><strong>演化式原型：</strong></mark>
+<ul>
+<li>设计以需求过程中的原型为基础</li>
+<li>原型经过演化，成为今后提交的产品</li>
+<li><mark><strong>优点：</strong></mark>
+<ul>
+<li>与实际系统相似度更高</li>
+<li>节省构建成本，也可能提高效率</li>
+</ul>
+</li>
+<li><mark><strong>缺点：</strong></mark> 得到架构糟糕的系统</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="三，原型用法">三，原型用法</h2>
+<ul>
+<li>
+<p><strong>原型要表现的方面</strong></p>
+<ul>
+<li>
+<p>软件功能</p>
+</li>
+<li>
+<p>软件架构</p>
+</li>
+<li>
+<p>软件外观风格、接口</p>
+</li>
+</ul>
+</li>
+<li>
+<p>让用户了解构造的系统**（直观地展示系统的愿景）**</p>
+</li>
+<li>
+<p><strong>验证需求</strong></p>
+<ul>
+<li>验证需求是否可实现</li>
+<li>需求之间是否有矛盾</li>
+</ul>
+</li>
+<li>
+<p><strong>发掘需求</strong></p>
+</li>
+<li>
+<p><strong>启发设计</strong></p>
+</li>
+</ul>
+<h1>小结</h1>
+<ul>
+<li>故事板和原型既可以用于需求获取，也可用于需求确认；</li>
+<li>既可以用于开发团队内部讨论，也可以用于与客户的讨论；</li>
+<li>尽量减少在故事板和原型上的投入。要容易修改，最好是与顾客一起改；</li>
+<li>不要把他们做得太精致。</li>
+<li>尽量使用交互方式。</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/10/29/2024.10.29-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E6%95%85%E4%BA%8B%E6%9D%BF%E5%92%8C%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%BA%94%E7%94%A8/">http://brando-r.github.io/2024/10/29/2024.10.29-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E6%95%85%E4%BA%8B%E6%9D%BF%E5%92%8C%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%BA%94%E7%94%A8/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/04/2024.11.04-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E6%96%87%E6%A1%A3%E5%8C%96%E5%8F%8A%E6%84%BF%E6%99%AF%E6%96%87%E6%A1%A3/">软件需求与建模7——文档化及愿景文档</a>
+            
+            
+            <a class="next" rel="next" href="/2024/10/22/2024.10.22-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E4%B9%8B%E8%AE%A8%E8%AE%BA%E4%BC%9A/">软件需求与建模5——需求获取之讨论会</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>

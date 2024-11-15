@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>软件需求与建模10——领域模型 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模10——领域模型</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 6, 2024&nbsp;&nbsp;1:06:56</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>一，面向方案的需求</h1>
+<ul>
+<li>
+<p><strong>可以直接导出设计方案的需求</strong></p>
+</li>
+<li>
+<p>定义系统需要实现的<strong>属性和特性</strong>(功能特点，操作)</p>
+</li>
+<li>
+<p>比目标、场景<strong>更详细</strong>。目标与场景不一定是所有涉众的共识，可能存在冲突；面向方案的需求已达成共识，冲突已解决.</p>
+<p><img src="https://s2.loli.net/2024/11/09/CdAHOSaq23ZYKvz.png" alt="目标、场景与面向方案的需求比较"></p>
+<p><img src="https://s2.loli.net/2024/11/09/fcRWhjL9rNKwYJU.png" alt="面向方案的需求与目标、场景的关系"></p>
+</li>
+<li>
+<p>面向方案的需求主要包括<mark><strong>数据视图，功能视图，行为视图</strong></mark></p>
+<ul>
+<li><mark><strong>数据视图</strong></mark>
+<ul>
+<li>数据视图定义<strong>软件需要管理的数据/信息</strong>。主要描述数据的静态方面，包括实体，实体之间的关系，属性，与系统相关的属性类型等</li>
+<li>数据视图并不考虑对数据的操纵</li>
+<li>常使用<strong>实体关系图</strong>描述数据视图</li>
+</ul>
+</li>
+<li><mark><strong>功能视图</strong></mark>
+<ul>
+<li>功能视图定义<strong>系统需要提供的处理过程(功能)</strong>、每一个处理过程中对于数据的操纵、处理过程之间的输入/输出关系(信息流)</li>
+<li>行为视图<strong>关注系统的总体行为</strong>，定义系统所接收的外部激励、系统的响应以及二者之间的关系。行为视图也描述系统可能的状态及状态之间的迁移。</li>
+<li>常使用<strong>数据流图</strong>描述功能视图。</li>
+</ul>
+</li>
+<li><mark><strong>行为视图</strong></mark>
+<ul>
+<li>常用状态图描述行为视图。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>二，领域模型的概念</h1>
+<ul>
+<li>领域模型指<strong>问题领域中重要概念及其关联的集合</strong>。也称为<mark>概念模型</mark>。</li>
+<li>领域模型中的<strong>概念</strong>也称为<strong>问题域对象</strong>。领域模型也称为问题域对象模型。</li>
+<li>描述问题域中的“事物”或“产品”（即用名词表示的东西）</li>
+<li>领域模型可以在<strong>业务建模活动中产生</strong>，也可以从<strong>场景需求中提炼</strong>。</li>
+<li>领域模型 != 数据模型</li>
+<li>数据模型中，只包含需要持久保存的数据对象。但<strong>领域模型中可以存在需求中没有要求记录其相关信息的类</strong>，也不排除没有属性的概念类。</li>
+<li>领域模型<strong>澄清问题领域的名词术语和概念</strong>，促使开发者真正理解需求</li>
+<li>领域模型<strong>为下一步的设计打基础</strong>。设计模型中有一部分类直接从领域模型得到。这既提高了模型之间的可跟踪性，缩小了设计模型与领域的语义差别，又有利于提高效率。</li>
+</ul>
+<h1>三，领域模型的意义</h1>
+<ul>
+<li>有利于<strong>理解问题领域中的有关概念、词汇和它们之间的关系</strong></li>
+<li>设计模型中的软件类的名称要<strong>源于领域模型中的概念类的名称</strong>，</li>
+<li>设计模型中的类定义以及类和类之间的关联必须在理解领域模型后才能进行设计。</li>
+<li>领域模型是“可视化字典”，直观地表示了<strong>领域的重要抽象、领域词汇及其关联信息</strong>。</li>
+</ul>
+<h1>四，识别和记录领域对象</h1>
+<ul>
+<li>
+<h2 id="识别领域对象的方法：">识别领域对象的方法：</h2>
+<ul>
+<li>方法1：重用和修改现有的模型。许多领域中都已存在已发布的甚至是绘制精细的领域模型或数据模型(这些数据模型可以修改为领域模型)</li>
+<li>方法2：使用概念分类列表，头脑风暴获得</li>
+<li>方法3：通过识别用例中的名词短语寻找概念类</li>
+</ul>
+</li>
+<li>
+<h2 id="用例举例：">用例举例：</h2>
+</li>
+</ul>
+<p>主成功场景（或基本流程）：</p>
+<pre><code>1. 顾客携带所购商品或服务到POS机付款处进行购买交易。
+1. 收银员开始一次新的销售交易。
+1. 收银员输入商品标识。
+1. 系统逐条记录出售的商品项目,并显示 该商品的描述、价格和累计额.价格通过一组价格规则来计算。  收银员重复3—4步直到结束.
+1. 系统显示总额和所计算的税金.  
+</code></pre>
+<ol start="6">
+<li>收银员告知顾客总额并提请付款数.</li>
+<li>顾客支付，系统处理支付。</li>
+<li>记录完整的销售信息,并将销售和支付信息发送到外部的账务系统（进行账务处理并计算提成）和库存系统（更新库存）。</li>
+<li>系统打印票据.</li>
+<li>顾客携带所购商品和票据（如果有）离开。</li>
+</ol>
+<p>扩展（或替代流程）：……</p>
+<p>7a.现金支付:</p>
+<p>​	1.收银员输入收取的现金额.</p>
+<p>​	2.系统显示找零金额,并弹出现金抽屉.</p>
+<p>​	3.收银员放入收取的现金,并给顾客找零.</p>
+<p>​	4.系统记录该次现金支付.</p>
+<p>领域对象有： Sale(销售项)、Cashier(收银员)、CashPayment(现金支付)、Customer(顾客)、SalesLineItem(销售项条目)、Item(商品项)、Register(销售点终端)、ProductCatalog(产品目录)、 ProductDescription(产品规格说明)、 Store(商店)、Ledger(销售记录)</p>
+<ul>
+<li>
+<h2 id="记录领域对象的问题：">记录领域对象的问题：</h2>
+<ul>
+<li><strong>适当地命名</strong>（领域对象是具体存在的事物或动作）</li>
+<li><strong>添加属性</strong>（以需求为导向取舍，也可从用例出发寻找）</li>
+<li><strong>分析相互间的关联</strong>（可能很复杂，但开始时可以少考虑，逐步深入）</li>
+<li><strong>用图表示</strong>（UML中的类图）</li>
+</ul>
+</li>
+</ul>
+<h1>五，领域模型举例</h1>
+<ul>
+<li>
+<h2 id="建立领域模型的思路：">建立领域模型的思路：</h2>
+<ul>
+<li>根据用例描述识别领域对象</li>
+<li>识别对象的属性</li>
+<li>识别对象的关联</li>
+<li>画领域类图</li>
+<li>记录领域模型到词汇表中</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/11/09/w6rzMKiNtju8LZA.png" alt="领域类图"></p>
+<h1>六，领域模型经验</h1>
+<ul>
+<li>准则1：绘制类图的草图</li>
+<li>准则2：敏捷方法中，一般不需要使用CASE工具维护长周期的领域模型。</li>
+<li>准则3：一般不需要报表对象（其信息重复），要看业务中是否有特别用途。</li>
+<li>准则4：使用领域术语。地图绘制者总是使用地域现有名称标注地图。排除无关或超出范围的特性，不凭空增加事物。</li>
+<li>准则5：对非现实世界（抽象世界）建模时，使用该领域专家的核心词汇或概念。</li>
+<li>准则6：如果某概念X不是现实世界中的数字或文本，那么X可能是概念类而不是属性。</li>
+<li>准则7：使用描述类表示事物（商品、零件、服务等）的属性。而业务项目中，不用重复包含事物属性。</li>
+</ul>
+<h1>重点！！！</h1>
+<ul>
+<li>面向方案的需求是目标和场景描述的进一步细化，将作为设计的主要输入</li>
+<li>与目标、场景需求不同，面向方案的需求已解决冲突，描述更多细节</li>
+<li>面向对象的方法所对应的面向方案的需求文档主要有领域模型、系统顺序图、操作契约等。</li>
+<li>领域模型重点掌握概念，领域对象的识别，领域对象的描述和表示。</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/11/06/2024.11.06-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B/">http://brando-r.github.io/2024/11/06/2024.11.06-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%A2%86%E5%9F%9F%E6%A8%A1%E5%9E%8B/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/09/2024.11.09-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E7%B3%BB%E7%BB%9F%E9%A1%BA%E5%BA%8F%E5%9B%BE%E4%B8%8E%E6%93%8D%E4%BD%9C%E5%A5%91%E7%BA%A6/">软件需求与建模11——系统顺序图与操作契约</a>
+            
+            
+            <a class="next" rel="next" href="/2024/11/06/2024.11.05-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E8%A7%84%E7%BA%A6%E4%B8%8E%E8%A1%A5%E5%85%85%E8%A7%84%E7%BA%A6/">软件需求与建模9——需求规约与补充规约</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>

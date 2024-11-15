@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>软件需求与建模5——需求获取之讨论会 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模5——需求获取之讨论会</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 22, 2024&nbsp;&nbsp;0:59:52</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>讨论会简介</h1>
+<ul>
+<li>需求讨论会是<strong>最重要的需求获取技术</strong>。<mark>（如果只采用一种获取方法，就是讨论会）</mark></li>
+<li>需求讨论会在<strong>短时间内</strong>鼓励与会者在应用程序的需求上达成共识，对操作过程尽快取得统一意见。</li>
+<li>优点：
+<ul>
+<li>有助于建立<strong>高效</strong>的团队，并承诺项目成功；</li>
+<li><strong>所有涉众</strong>畅所欲言，无人被排除在外；</li>
+<li>在开发团队和涉众之间达成关于应用程序必须做什么的共识</li>
+<li>可以<strong>暴露和解决</strong>干扰项目成功的<strong>政治问题</strong></li>
+<li>其结果，一个特性级别的<strong>初步系统定义</strong>，马上可用。</li>
+</ul>
+</li>
+<li>需求讨论会在很多项目上的应用很成功，但其<strong>技术层面</strong>也不可忽视。</li>
+<li>需求讨论会上，经常要采用<strong>辅助讨论技术</strong>，如头脑风暴。</li>
+</ul>
+<h1>讨论会过程</h1>
+<ul>
+<li>
+<p><strong>讨论会过程三方面</strong>：<mark>准备</mark>，<mark>执行</mark>，<mark>善后</mark></p>
+<ul>
+<li>
+<p><strong>准备：</strong> 会前应该做什么，怎么做；</p>
+</li>
+<li>
+<p><strong>执行：</strong> 会中如何做；</p>
+</li>
+<li>
+<p><strong>善后：</strong> 会后如何处理有关资料。</p>
+<h2 id="一，准备">一，准备</h2>
+<ul>
+<li>定义<strong>会议目标，宣传会议</strong>的意义。</li>
+<li>选择会议的<strong>参与者</strong>。如有可能，预先就会议<strong>目标达成一致</strong></li>
+<li>确定开会的<strong>时间地点</strong>。会议室要足够大，便于讨论</li>
+<li><strong>后勤保障</strong>准备：交通，餐食，茶点，居住，活动等</li>
+<li>准备背景材料：
+<ul>
+<li><strong>与会议目标有关的资料</strong>：例如需求文件草案，已排序的特性，与用户面谈的记录，行业趋势预测，用户来信，系统错误报告，新的管理方向，新的营销数据等；</li>
+<li>跳出框框的思考准备：不要受旧框框的束缚，<strong>正确思维</strong></li>
+</ul>
+</li>
+<li>选择主持人，记录员
+<ul>
+<li>主持人最好是从<strong>外部</strong>请来的专业人士</li>
+<li>记录员负责客观记录，最好经专业训练</li>
+</ul>
+</li>
+<li>主持人的职责包括：
+<ul>
+<li>建立专业和客观的会议氛围</li>
+<li>准时开始和结束会议</li>
+<li>建立和维持会议规则</li>
+<li>介绍会议的目标和议</li>
+<li>程管理会议并保持与会者不要偏离正轨</li>
+<li>主持决策和达成共识的过程，但避免参与到内容中</li>
+<li>管理设施和后勤事务以确保焦点在议程上</li>
+<li>确保所有涉众参与并使其发言被听到</li>
+<li>控制导致混乱和无益的行为</li>
+</ul>
+</li>
+<li>设定<strong>议程</strong>（开会时一般每45分钟休息5~10分钟，不必列入时程）</li>
+</ul>
+<h2 id="二，执行">二，执行</h2>
+<ul>
+<li>导入
+<ul>
+<li>主持人介绍讨论会目标、预期成果和议程，参与者可以发表意见，必要时可调整；</li>
+<li>主持人<strong>明确开会的规则或纪律</strong>。如果使用头脑风暴技术，也要说明规则；</li>
+<li>让参与者<strong>对每条规则投票</strong>。通过后的规则要让所有人能看到（如张贴布告）</li>
+</ul>
+</li>
+<li>工作要点
+<ul>
+<li>主持人应注意议程执行情况，中立地<strong>提醒时间</strong>。（当然，如果大家同意，可以改变议程）</li>
+<li>无时间充分讨论的问题（被迫中止），可以放在一个**“停车场”区域**，会后解决</li>
+<li>主持人要负责监控发言人遵守预定的规则，使用<strong>中立</strong>的方式（而不是冒犯的方式）指出</li>
+<li>记录所有相关问题的讨论结果（包括中间结果，最终结果）讨论会上如果要做决策，应明确记录。
+<ul>
+<li><strong>决策记录</strong>包括：
+<ul>
+<li>决策的可选方案</li>
+<li>所选择的决策</li>
+<li>决策依据</li>
+<li>如果可以，还要记录负责实现该决策的人</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>总结
+<ul>
+<li>对放在“停车场”上未来得及讨论的问题给出<strong>进一步处理</strong>的程序，或者<strong>约定下次</strong>开会时讨论。如果遗漏了某些未结束的问题，或收集的议题未妥善解决，会影响参与者下次开会的积极性</li>
+<li>对研讨会进行<strong>反思</strong>，有哪些好的方面，哪些要改进</li>
+</ul>
+</li>
+</ul>
+<h2 id="三，善后">三，善后</h2>
+<ul>
+<li>讨论会结束，主持人<strong>分发会议记录并记录任何其他成果</strong>。（主持人的工作）</li>
+<li>项目负责人要跟踪会议中记录的任何未完成活动项，组织信息并分发给与会者。</li>
+<li>会议的结果往往是一个简单的想法清单或产品功能建议，可立即交给开发团队进一步行动。</li>
+<li>有时要安排与其他涉众举行另外的讨论会，或者做进一步的需要发掘工作，以更好地了解讨论会得到的想法.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>头脑风暴(一种收集创意的讨论技术)</h1>
+<h2 id="一，简介">一，简介</h2>
+<ul>
+<li>参与者依照<strong>一定的规则自由发言</strong>，相互激发，围绕某个问题提出有创意的想法；</li>
+<li>主要<strong>优点</strong>：
+<ul>
+<li>鼓励所有出席者参与</li>
+<li>允许参与者相互借鉴彼此想法</li>
+<li>带宽高，许多想法可以在短时间产生</li>
+<li>结果通常指示了所提出任何问题的多种可能解决方案</li>
+<li>鼓励跳出框框思考，即<strong>不受正常约束的思考</strong></li>
+</ul>
+</li>
+<li>在讨论会上可能<strong>大部分时间都是做头脑风暴</strong>（见会议日程举例）。其他需要收集意见的场合也可以使用。</li>
+<li>头脑风暴分<strong>两个阶段</strong>：<mark>想法产生</mark>和<mark>想法提炼</mark>。</li>
+</ul>
+<h2 id="二，想法产生">二，想法产生</h2>
+<ul>
+<li>将有关涉众召集到一个会议室</li>
+<li>给每人分发至少25张7厘米╳12厘米见方(不要超过12厘米╳17厘米)的便签(如即时贴)，黑色笔</li>
+<li>主持人宣布讨论规则。</li>
+<li>主持人说明讨论目标（要简明）</li>
+<li>目标清楚后，主持人让参与者大声说出想法，并写在便签上</li>
+<li>大声说出来是为了让其他参加者听到和借鉴。听到别人的想法后，可以加以转化或组合，形成新的想法。</li>
+<li>写出来的<strong>目的</strong>:
+<ul>
+<li>确保想法用提出人的话语表达；</li>
+<li>确保想法不丢失；</li>
+<li>使想法可以贴出来供后面讨论；</li>
+<li>防止创意过程延迟(当由一人记录且试图将所有想法汇总到挂图或白板上时会引起)；</li>
+</ul>
+</li>
+<li>想法产生后，主持人将想法纸片收集起来并固定在会议室前面的<strong>墙上</strong>。</li>
+<li><mark>绝不允许批评发言者的想法。</mark></li>
+</ul>
+<h2 id="三，想法提炼">三，想法提炼</h2>
+<h3 id="一，修剪">一，修剪</h3>
+<h3 id="二，分类">二，分类</h3>
+<h3 id="三，定义特性">三，定义特性</h3>
+<h3 id="四，确定想法的优先次序">四，确定想法的优先次序</h3>
+<ul>
+<li>让与会者对已分类和定义的想法投票确定其优先级。有两种方法：
+<ul>
+<li><mark><strong>累计投票法</strong></mark>：给每个投票者100个分值，相当于100元钱，让投票者购买列出的想法，将购买方案写在纸上；然后主持人统计每个想法获得的购买金额。(注意：1.只能投票一次，不可重做；2.要限制用在一个想法上的最高金额)</li>
+<li><mark><strong>三分投票法</strong></mark>：给每个投票者与想法数相同的票，将票分为“关键的”、“重要的”、“有用的”三种，各三分之一。让大家每想法投1票。最后，统计各想法票数。可以将“关键的”票数乘以9，“重要的”票数乘以3，“有用的”乘以1得到量化分数。</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/10/22/2024.10.22-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E4%B9%8B%E8%AE%A8%E8%AE%BA%E4%BC%9A/">http://brando-r.github.io/2024/10/22/2024.10.22-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E4%B9%8B%E8%AE%A8%E8%AE%BA%E4%BC%9A/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/10/29/2024.10.29-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E6%95%85%E4%BA%8B%E6%9D%BF%E5%92%8C%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%BA%94%E7%94%A8/">软件需求与建模6——故事板和原型的应用</a>
+            
+            
+            <a class="next" rel="next" href="/2024/10/21/2024.10.21-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E4%B9%8B%E9%9D%A2%E8%B0%88/">软件需求与建模4——需求获取之面谈</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>

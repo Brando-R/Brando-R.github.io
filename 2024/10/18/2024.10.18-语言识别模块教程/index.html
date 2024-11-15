@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>[教程]基于天文Block &amp; ASR PRO开发板实现AI离线语音开发，又称“破次元壁~二次元爱人的声卡” | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[教程]基于天文Block &amp; ASR PRO开发板实现AI离线语音开发，又称“破次元壁~二次元爱人的声卡”</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 18, 2024&nbsp;&nbsp;12:37:54</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97/">语音识别模块</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>**！！！注意！！**该帖我只会讲制作角色语音识别模块的方法。看完该贴你会得到什么？</p>
+<p>回答：如果你<strong>购买基础设备</strong>并打算根据该贴<strong>实施行动</strong>，你会得到一个<strong>你推的语音识别模块</strong>。</p>
+<h1>准备工作</h1>
+<h2 id="一，-硬件准备">一， 硬件准备</h2>
+<ol>
+<li>
+<p><strong>ASR PRO语音开发板</strong>（焊好排针）</p>
+<ul>
+<li>
+<p>开发板可以直接在淘宝或者是京东买，挑便宜的买就行了，有2M和4M的，看着选。</p>
+</li>
+<li>
+<p>2M的大概可以放30条左右的短语音</p>
+</li>
+<li>
+<p>4M可以放很多条，完全够用了。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>type-c数据线</strong></p>
+<ul>
+<li>就是普通的数据线，type-c头 ＋ USB头</li>
+</ul>
+</li>
+<li>
+<p><strong>ASR PRO语音模块配套喇叭</strong></p>
+<ul>
+<li>！！！一定要买配套的喇叭，电子元器件好像有很多种类的喇叭（我不是很懂）</li>
+</ul>
+</li>
+</ol>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/ASRand%E9%85%8D%E5%A5%97%E5%96%87%E5%8F%AD.jpg" alt="ASR PRO开发板＋配套喇叭"></p>
+<h2 id="二，-软件准备">二， 软件准备</h2>
+<ol>
+<li><strong>天问Block:</strong><a target="_blank" rel="noopener" href="https://www.twen51.com/new/twen51/index.php">天问五幺官网 - 一站式单片机开发 (twen51.com)</a>请到官网下载吧！
+<ul>
+<li>这是我们接下来用来编程的软件</li>
+</ul>
+</li>
+</ol>
+<h1>连接工作</h1>
+<ol>
+<li>
+<p>很简单，按照上图，把开发板，喇叭连接，然后利用type-c数据线连接到电脑。</p>
+</li>
+<li>
+<p>打开天问Block，进入页面看到连接的设备名字则连接成功。</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F.png" alt="设备连接成功"></p>
+</li>
+</ol>
+<h1>编码工作</h1>
+<p>在开始编码工作之前我们要先了解一些东西，分别是，模块添加，播报音设置，欢迎词和退出语音，识别词，识别词类型，识别标识ID等。<em>该帖我只会讲制作角色语音识别模块的方法。</em></p>
+<h2 id="一，模块添加">一，模块添加</h2>
+<p>首先，我们要制作一个简单的语音识别（你说话，他回答），你会用到哪些模块呢？</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E6%A8%A1%E5%9D%97%E5%88%97%E8%A1%A8.png" alt="模块列表"></p>
+<ul>
+<li>
+<p>**语音识别：**里面有识别语音的基础模块（欢迎词，退出词，识别词），我们编程会用到的模块大部分都在这里。</p>
+</li>
+<li>
+<p>**控制：**包含了一些if-else，switch，延迟，计时器等功能。</p>
+</li>
+<li>
+<p>**数学与逻辑：**包含了一些，逻辑运算，与控制模块结合使用</p>
+</li>
+<li>
+<p>扩展—&gt;<strong>播放语音ID</strong>（需要下载）</p>
+<ul>
+<li>
+<p>点击左边列表下方的添加扩展，进入扩展页面后搜索“播放语音ID”，加载。</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E6%92%AD%E6%94%BE%E8%AF%AD%E9%9F%B3ID.png" alt="播放语音ID"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二，各种词语设置（播报音，欢迎词和退出语音，识别词，识别词类型，识别标识ID等）">二，各种词语设置（播报音，欢迎词和退出语音，识别词，识别词类型，识别标识ID等）</h2>
+<ol>
+<li>
+<p><strong>播放音</strong>（语音识别）</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E6%92%AD%E6%94%BE%E9%9F%B3.png" alt="播放音"></p>
+</li>
+</ol>
+<p>（必须要有）点击倒三角形可以选语音，但是选不选问题不大，因为后期我们都是需要把语音替换成自推的声音哒！</p>
+<ol start="2">
+<li>
+<p>欢迎词和退出语音（语音识别）</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E6%AC%A2%E8%BF%8E%E8%AF%8D%E5%92%8C%E9%80%80%E5%87%BA%E8%AF%AD%E9%9F%B3.png" alt="欢迎词和退出语音"></p>
+<ul>
+<li>
+<p>**欢迎词：**开发板连接电源之后自动触发</p>
+</li>
+<li>
+<p>**退出语音：**唤醒时间结束后自动播放</p>
+</li>
+</ul>
+</li>
+<li>
+<p>识别词，识别词类型，识别标识ID，回复语音</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E8%AF%86%E5%88%AB.png" alt="识别"></p>
+<ul>
+<li>
+<p>**识别词：**识别的声音，比如你喊“宝宝”希望得到回应，你就把识别词设成“宝宝”，识别词语句可以设置很多个</p>
+</li>
+<li>
+<p>**识别词类型：**分两类：唤醒词和命令词</p>
+</li>
+<li>
+<p><strong>唤醒词：<strong>用于在开发板连接电源的情况下，用于唤醒角色（唤醒词最多设置</strong>五个</strong>）</p>
+</li>
+<li>
+<p><strong>命令词：<strong>在角色</strong>被唤醒</strong>的情况下使用，（可设置多个）</p>
+</li>
+<li>
+<p><strong>识别标识ID：<strong>识别标识ID是</strong>唯一</strong>的，有且只能有一个！！！且<strong>必须有</strong></p>
+</li>
+<li>
+<p>**回复语音：**识别到唤醒词后回复的内容，比如你设置为”宝宝“，默认就是播报音回复”宝宝“，所以后期我们需要<em>把回复内容音频替换成自己的音频</em>。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>播报声音，唤醒退出时间</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E5%A3%B0%E9%9F%B3%E5%92%8C%E6%97%B6%E9%97%B4.png" alt="声音和时间"></p>
+</li>
+</ol>
+<h2 id="三，正式开始编码">三，正式开始编码</h2>
+<ol>
+<li>
+<p>新建项目</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.png" alt="新建项目"></p>
+<ul>
+<li>
+<p>新建项目后你会得到一个这样的项目文件，对此我们需要注意以下几点</p>
+<ul>
+<li>设备已连接</li>
+<li>连接设备为ASRPRO</li>
+<li>设置项目名称（分别后续修改）</li>
+</ul>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6.png" alt="新建项目文件"></p>
+</li>
+<li>
+<p>删掉初始文件中不需要的部分</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E5%88%A0%E6%8E%89%E5%90%8E.png" alt="删掉后"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>编码</p>
+<ul>
+<li>
+<p><strong>设置欢迎词和退出词</strong></p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E6%AC%A2%E8%BF%8E%E8%AF%8D%E5%92%8C%E9%80%80%E5%87%BA%E8%AF%AD%E9%9F%B3.png" alt="欢迎词和退出词"></p>
+</li>
+<li>
+<p><strong>设置唤醒词</strong>（按需设置）</p>
+</li>
+</ul>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E5%94%A4%E9%86%92%E8%AF%8D.png" alt="唤醒词"></p>
+<ul>
+<li>
+<p><strong>设置命令词</strong>（按需设置）</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E5%91%BD%E4%BB%A4%E8%AF%8D.png" alt="命令词"></p>
+</li>
+<li>
+<p><strong>设置随机回复</strong></p>
+<ul>
+<li>首先设置<strong>识别词</strong>和<strong>添加语音</strong>
+<ul>
+<li><strong>识别词</strong>类型为<strong>命令词</strong>（！！！不可以是唤醒词），回复语音设置为<strong>空</strong></li>
+<li>**添加语音：**语音名称不重要，自己看得懂就好，<strong>播放ID最好是连在一起</strong>的</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E9%9A%8F%E5%8D%B3%E5%9B%9E%E5%A4%8D.png" alt="随即回复"></p>
+<ul>
+<li>
+<p>设置执行代码</p>
+<ul>
+<li>在<strong>控制模块</strong>选择**“如果-执行”模块**/“switch模块”，添加到这个紫色<strong>执行</strong>的位置</li>
+<li>在<strong>数字与逻辑</strong>模块选择一个可以嵌套<strong>语音识别ID</strong>的模块，如果不知道选哪个就选图片这个</li>
+<li>在数字与逻辑模块中添加<strong>语音识别ID</strong>模块（在语音识别中）如图</li>
+<li>在**“如果-执行”模块<strong>的</strong>执行<strong>部分添加</strong>播放语音ID**模块（在扩展的播放语音中），之后在数字与逻辑模块选择需要的块</li>
+</ul>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81.png" alt="执行代码"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>到了这里，编码部分就结束了。</p>
+<h2 id="四，生成模型">四，生成模型</h2>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B.png" alt="生成模型"></p>
+</li>
+</ol>
+<h1>音频导入</h1>
+<p>在模型生成之后，我们就要进行音频导入各种了，也就是<strong>把模型生成的音频替换成自己的音频</strong>。</p>
+<p>！！！注意！！你需要提前准备好<strong>wav格式的音频</strong>！！！</p>
+<h3 id="第一步-我们需要找到天问Block的文件夹">第一步 我们需要找到天问Block的文件夹</h3>
+<ul>
+<li>如果你没有修改下载路径，这个文件夹大概率在c盘下。</li>
+</ul>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E5%A4%A9%E9%97%AEBlock.png" alt="天问Block"></p>
+<ul>
+<li>点进文件夹【天问Block】—&gt;【asrpro】，我们会看到几个会用到的文件</li>
+</ul>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/asrpro%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="asrpro文件夹"></p>
+<ul>
+<li>点进【voive】—&gt;【mp3】文件夹，我们可以看到系统生成的音频，然后将<strong>你的音频</strong>重命名为生成的音频**（把你音频的名字改成生成音频的名字）**</li>
+</ul>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/%E9%9F%B3%E9%A2%91.png" alt="音频"></p>
+<ul>
+<li>回到原本文件夹，进入【asrpro】—&gt;【wav】文件夹，将自己修改为名字的音频粘贴到【wav】文件夹（注意！<strong>音频一定要是wav格式</strong>）</li>
+</ul>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/wav.png" alt="wav"></p>
+<ul>
+<li>退回到【asrpro】文件夹，双击【一键转语音.bat】，随后回到【voive】—&gt;【mp3】文件夹，会发现，音频已经完成替换。</li>
+</ul>
+<h1>烧录</h1>
+<p>回到天问Block，点击2M编译下载，等待烧录完成。</p>
+<p><img src="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/assets/blog_res/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B.assets/2M%E7%BC%96%E8%AF%91%E4%B8%8B%E8%BD%BD.png" alt="2M编译下载"></p>
+<p>OK，等你完成这一步，你的语音识别模块就已经完成啦！</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/">http://brando-r.github.io/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%85%B6%E4%BB%96/"># 其他</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/10/19/2024.10.19-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%AF%BC%E8%AE%BA/">软件需求与建模1——导论</a>
+            
+            
+            <a class="next" rel="next" href="/2024/09/16/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">[教程]基于Hexo主题&Github平台的个人博客搭建，以Chic主题为例</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>

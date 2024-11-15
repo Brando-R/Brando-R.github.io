@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>软件需求与建模1——导论 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模1——导论</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 19, 2024&nbsp;&nbsp;17:51:33</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>软件工程简介</h1>
+<ul>
+<li>软件工程（IEEE定义）：
+<ul>
+<li>（1）<mark>应用系统的、科学的方法，开发、运行和维护软件，即将工程(Engineering)应用到软件；</mark></li>
+<li>（2）<mark>对（1）中各种方法的研究。</mark></li>
+</ul>
+</li>
+<li>研究开发软件的<u>方法、过程、工具</u></li>
+<li>任何软件，总是处于一定的上下文中，构建软件就是<u>建立一个基于计算机的系统</u>，因此比较复杂；</li>
+</ul>
+<h1>软件需求简介</h1>
+<p><strong>一，软件需求（IEEE定义）：</strong></p>
+<ol>
+<li><mark>用户为达到某个目标</mark>而需要解决某个问题时<mark>所必需的一种软件能力</mark>；</li>
+<li><mark>系统或系统组件</mark>为满足某个合约、标准、规格说明或其他正式文档<mark>所必需达到和拥有的软件能力</mark>；</li>
+<li>以上<mark>两点的文档表示</mark>。</li>
+</ol>
+<p><strong>二， 软件需求的特点</strong>：</p>
+<ul>
+<li>
+<p>需求很难描述（自然语言模糊，二义性，语境复杂）</p>
+</li>
+<li>
+<p>需求不易理解（描述不准确，行业隔阂）</p>
+</li>
+<li>
+<p>需求是<mark>变化的</mark>（天然特性，客观存在）</p>
+</li>
+<li>
+<p>需求是<mark>分层次的</mark>（不同的系统相关人员，以不同的视角，对软件系统的需求描述不同）</p>
+<ul>
+<li>
+<p>高层需求：系统的目标，期望；</p>
+</li>
+<li>
+<p>中层需求：系统的特征；</p>
+</li>
+<li>
+<p>低层需求：系统应该怎么做；</p>
+</li>
+<li>
+<p><strong><mark>涉众</mark>：<strong>系统开发相关人员，包括</strong>客户方管理者、操作人员，也包括供应方所有与项目有关的人</strong>。涉众所处不同位置决定其对需求的看法</p>
+</li>
+<li>
+<p>小结：<mark>软件需求分三个层次</mark>（需要，特性，软件需求）</p>
+<p><img src="https://s2.loli.net/2024/11/09/l9S1GaFrfJKhEnR.jpg" alt="软件需求三个层次"></p>
+<ul>
+<li><strong><mark>需要</mark>：<strong>购买或引进系统所要解决的业务、人事或运行问题的体现或表述,即</strong>高层需求</strong></li>
+<li><strong><mark>特性</mark>：<strong>对所需要的</strong>系统行为的高级表示</strong>称为产品或系统特性。<strong>特性描述系统功能而又不陷入细节</strong>。特性也可以说是系统为<strong>完成涉众</strong>的一个或多个<strong>需要而提供的一个服务</strong></li>
+<li><strong><mark>软件需求</mark>：<strong>对</strong>特性细化的结果</strong>。表明<strong>系统要做什么</strong>，要受哪些限制</li>
+</ul>
+</li>
+<li>
+<p>两个概念</p>
+<ul>
+<li><strong><mark>问题领域</mark>：</strong> <strong>软件系统工作的环境、目标、对象</strong>所构成的空间；（即<em>现实世界</em>）</li>
+<li><strong><mark>解决问题方案领域</mark>：</strong> <strong>软件系统内部的对象或组成要素</strong>所构成的空间。（即<em>软件世界</em>）</li>
+</ul>
+</li>
+<li>
+<p><strong>问题领域</strong>是<mark>软件系统存在的上下文环境</mark>；解决方案领域是软件本身。</p>
+</li>
+<li>
+<p>发现和确定软件需求，总是要<mark>从问题领域入手</mark></p>
+</li>
+</ul>
+</li>
+<li>
+<p>需求是多样的（<mark><strong>多样性</strong></mark>）：除了涉及软件功能，即软件做什么，还涉及质量、性能、约束条件等</p>
+<p><strong><mark>FURPS+</mark>：</strong></p>
+<ul>
+<li><strong>Function：功能。</strong> 系统做哪些事情；</li>
+<li><strong>Usability：可用性。</strong> 人为因素（美学、易学性、易用性等）和用户界面、用户文档、培训资料的一致性；</li>
+<li><strong>Reliability：可靠性。</strong> 指失败的频率和严重性以及可恢复性、可预测性和准确性；</li>
+<li><strong>Performance：性能。</strong> 在功能性需求上施加的条件（如速度、有效性、准确性、响应时间、恢复时间、内存使用等）；</li>
+<li><strong>Supportability：可支持性。</strong> 指可测性、可维护性和其他在系统发布以后使系统保持最新所需要的质量。</li>
+<li><strong>+：更多需求</strong> 接口或界面要求，实现约束条件，业务规则，法律和许可要求，包装和发布要求等。</li>
+</ul>
+<p>以上<strong>除功能需求之外的需求，统称为非功能需求。</strong></p>
+</li>
+</ul>
+<h1>软件建模简介</h1>
+<p><strong>一， 软件建模：</strong> <mark>对要开发的软件进行描述的活动</mark>。软件建模的结果就是软件模型。</p>
+<p><strong>二， 对软件的建模的描述：</strong></p>
+<ul>
+<li>自然语言描述，说明软件是怎样的；</li>
+<li>抽象图形描述，说明软件如何构造；</li>
+<li>数学公式描述，说明软件的准确逻辑；</li>
+</ul>
+<p>目前工程实践中主要采用<strong>自然语言和图形语言建模</strong></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/10/19/2024.10.19-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%AF%BC%E8%AE%BA/">http://brando-r.github.io/2024/10/19/2024.10.19-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%AF%BC%E8%AE%BA/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/10/20/2024.10.20-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B%E6%A1%86%E6%9E%B6/">软件需求与建模2——需求工程框架</a>
+            
+            
+            <a class="next" rel="next" href="/2024/10/18/2024.10.18-%E8%AF%AD%E8%A8%80%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9D%97%E6%95%99%E7%A8%8B/">[教程]基于天文Block & ASR PRO开发板实现AI离线语音开发，又称“破次元壁~二次元爱人的声卡”</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>

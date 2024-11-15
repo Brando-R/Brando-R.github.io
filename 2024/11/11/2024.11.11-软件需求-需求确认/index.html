@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>软件需求与建模13——需求确认 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模13——需求确认</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 11, 2024&nbsp;&nbsp;21:59:26</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>一，概念</h1>
+<ul>
+<li><strong>需求确认</strong>：在需求活动进行后，对<strong>需求活动的输出</strong>（文档或制品）、<strong>需求活动的输入</strong>(上下文因素)以及<strong>需求活动过程</strong>进行检查，看是否符合预定的质量标准或过程指南(是否适当)。</li>
+<li>需求确认需要<strong>将相关涉众、其他需求来源(标准、法律等)以及外部评审者(如果有必要)纳入活动中</strong>。</li>
+<li><strong>确认</strong>是正确性检查，<strong>验证</strong>是正确性证明。<strong>确认的结果</strong>一般为“适当”、“不适当”；<strong>验证的结果</strong>一般为“正确”、“不正确”。</li>
+<li>由于验证主要关注表述的正确性，往往使用<strong>形式化</strong>方法，<strong>实践中更关注确认</strong>。</li>
+<li>对需求而言，如果不能确定需求是适当的，即使能证明个别属性如安全性的正确性也无意义。</li>
+</ul>
+<h1>二，确认的目的</h1>
+<ul>
+<li><mark><strong>需求确认有三个具体目标：</strong></mark>
+<ul>
+<li>检查活动的<strong>输出</strong>是否满足所定义的<strong>质量准则</strong>；</li>
+<li>检查活动的<strong>输入</strong>是否满足所定义的<strong>质量准则</strong>；</li>
+<li>检查活动的<strong>执行</strong>是否遵循了过程定义和<strong>活动准则</strong>。</li>
+</ul>
+</li>
+<li><strong>不充分进行确认，产生的风险</strong>
+<ul>
+<li>影响到开发活动有效开展</li>
+<li>导致法律问题或合同纷争</li>
+<li>导致额外的成本或工作量</li>
+</ul>
+</li>
+</ul>
+<h1>三，制品的确认</h1>
+<ul>
+<li>
+<p>从以下<mark><strong>三个维度</strong></mark>进行：</p>
+<ul>
+<li><strong>内容维度</strong>：检查是否所有的相关需求都被发掘了，并且理解的程度达到了要求的详细程度。</li>
+<li><strong>文档化维度</strong>：检查记录的需求是否符合定义的文档化和规约规则。</li>
+<li><strong>共识维度</strong>：检查涉众是否对文档化的需求达到了一致。检查每一个已知的冲突是否被解决，同时检查是否还存在未识别的冲突。</li>
+</ul>
+</li>
+<li>
+<p><strong>内容维度的确认：检查需求内容上的缺陷</strong>。按以下<mark><strong>准则</strong></mark>进行：</p>
+<ul>
+<li><strong>制品/文档的完备性</strong>：制品是否包含了所有相关信息</li>
+<li><strong>需求完备性</strong>：每个需求是否包含了所有需要的信息</li>
+<li><strong>一致性</strong>：系统是否能同时满足所有需求</li>
+<li><strong>需求正确性</strong>：需求内容确实反应了涉众的需要和期望</li>
+<li><strong>需求分类正确性</strong>：每个需求是否被划分到正确的类别</li>
+<li><strong>必要性</strong>：每一个需求是否需要(满足定义的一致目标)</li>
+<li><strong>无提前的设计决定</strong>：每个需求未规定设计或偏好</li>
+<li><strong>可测试性</strong>：是否为每个需求定义了验收或测试准则</li>
+<li><strong>可追踪性</strong>：是否定义了每个需求所有的相关可追踪关系，文档的链接是否正确。</li>
+</ul>
+</li>
+<li>
+<p><strong>文档化维度的确认：检查文档化的需求是否符合通用的文档化规则和项目特定的方针</strong>。按以下<mark><strong>准则</strong></mark>进行：</p>
+<ul>
+<li><strong>正确的文档格式</strong>：需求制品是否符合所要求的格式</li>
+<li><strong>易理解性</strong>：文档化的需求在给定的上下文中是否容易理解</li>
+<li><strong>无歧义</strong>：需求制品的文档格式是否保证对需求无歧义的解读？</li>
+<li><strong>符合文档化规则</strong>：需求制品是否符合文档化的规则和指南？</li>
+</ul>
+</li>
+<li>
+<p><strong>共识维度的确认：检查所有相关的涉众是否在最终的需求上达成了共识</strong>。针对以下方面：</p>
+<ul>
+<li><strong>共识</strong>：相关涉众是否对每一项需求都达成共识？</li>
+<li><strong>修改后的共识</strong>：在需求修改或者上下文发生改变后，相关涉众是否重新达成了共识？</li>
+<li><strong>已进行了冲突检查</strong>：是否检查了需求中由冲突目标等造成的潜在冲突？</li>
+<li><strong>冲突已解决</strong>：每一项需求中已知的冲突是否都已经解决了？</li>
+</ul>
+</li>
+</ul>
+<h1>四，上下文确认</h1>
+<ul>
+<li>仅检查需求制品，无法发现需求缺失方面的问题。需求缺失与不充分的上下文考虑相关。</li>
+<li><mark><strong>上下文缺陷</strong></mark>主要有：
+<ul>
+<li>上下文信息缺失</li>
+<li>不正确的上下文信息</li>
+<li>未充分考虑上下文信息</li>
+<li>不完备的需求来源</li>
+</ul>
+</li>
+<li>上下文的<mark><strong>四个刻面</strong></mark>:
+<ul>
+<li><strong>主体刻面</strong></li>
+<li><strong>使用刻面</strong>：确保系统的使用方式信息、相关的用户组和他们期望的使用界面类信息，以及其他系统期望的系统使用信息，完备和正确。</li>
+<li><strong>IT系统刻面</strong>：考虑IT系统刻面各因素（硬件、软件、网络、其他相关系统），确保系统能集成到IT系统环境中。</li>
+<li><strong>开发刻面</strong>：开发所用的方法、工具，会影响系统的开发过程。应在开发早期确认，后期无法更改。</li>
+</ul>
+</li>
+</ul>
+<h1>五，活动的确认</h1>
+<ul>
+<li>活动的确认：<strong>检查每一要求的需求工程活动是否被适当地执行</strong>。</li>
+<li><mark><strong>确认动机</strong></mark>：如果遵循了已被采纳和证明有效的过程，会增强对产品质量的信心。</li>
+<li>活动确认的<mark><strong>目标</strong></mark>：找出活动与已约定开发过程的不一致(偏差)。这种偏差会导致需求质量的损害。</li>
+<li>过程定义<strong>以任务和活动描述定义</strong>，确认即<strong>检查过程定义相对应的执行活动</strong>是否有偏差。</li>
+</ul>
+<h1>六，确认的准则</h1>
+<ul>
+<li>原则1：引入正确的涉众</li>
+<li>原则2：分离缺陷检测和缺陷修正</li>
+<li>原则3：利用多个独立视角</li>
+<li>原则4：使用恰当的文档化格式</li>
+<li>原则5：确认期间创建开发制品</li>
+<li>原则6：反复确认</li>
+</ul>
+<h1>七，常用技术</h1>
+<ul>
+<li>常用技术有：<strong>审查，桌面评审，走查，基于原型的确认</strong>。
+<ul>
+<li><strong>审查</strong>：通过阅读、讨论、修改等，对书面材料进行质量提升的过程。(改进文档本身质量，也改进文档产生和评审的过程质量)</li>
+<li><strong>桌面评审</strong>：比审查简单的确认方式。作者将制品发给多个涉众，<strong>让涉众在自己的桌面各自检查制品</strong>。将发现的问题直接<strong>反馈给作者</strong>，或者以小组讨论的方式收集缺陷</li>
+<li><strong>走查</strong>：由<strong>制品作者发起</strong>的确认活动。作者在产生初始想法和建立制品草案阶段，让4个上下文刻面的参与者较早介入，<strong>以非正式的方式就有关需求达成一致</strong>。</li>
+<li><strong>基于原型的确认</strong>：由于<strong>自然语言描述</strong>的需求文档抽象，有歧义，仅仅根据需求文档进行确认难免会有遗漏的缺陷。</li>
+</ul>
+</li>
+<li>了基于原型确认，涉众从需求中挑选部分需求到原型中。</li>
+<li><strong>原型越接近实际系统，得到的结果越有意义</strong>。</li>
+<li>为了控制成本，又要限制原型的功能与性能。</li>
+</ul>
+<h1>重点！！！</h1>
+<ul>
+<li>需求确认是对需求输出、输入、过程进行检查的核心活动，可以发现以上三个方面的问题，改正错误，改进过程；</li>
+<li>输出即需求制品。主要从内容、文档化、共识程度三个维度检查；</li>
+<li>输入即需求上下文，主要从主体、使用、IT系统、开发四个刻面开展检查；</li>
+<li>过程即需求活动开展的方式。有无过程定义；有没有按照过程定义工作；过程有无改进。</li>
+<li>需求确认有六项可遵循的原则：引入正确的涉众；分离缺陷检测和缺陷修正；利用多个独立视角；使用恰当的文档化格式；确认期间创建开发制品；反复确认。</li>
+<li>需求确认常采用审查、桌面检查、走查、基于原型等方法。前三者主要依据文档，难免有遗漏；后者可以弥补前三者的不足，但成本高。</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/11/11/2024.11.11-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E7%A1%AE%E8%AE%A4/">http://brando-r.github.io/2024/11/11/2024.11.11-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E7%A1%AE%E8%AE%A4/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/14/2024.11.14-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84-%E5%AF%BC%E8%AE%BA/">软件架构与设计1——导论</a>
+            
+            
+            <a class="next" rel="next" href="/2024/11/11/2024.11.10-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%8D%8F%E5%95%86/">软件需求与建模12——需求协商</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>

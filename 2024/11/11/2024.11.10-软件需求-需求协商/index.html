@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>软件需求与建模12——需求协商 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模12——需求协商</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 11, 2024&nbsp;&nbsp;1:32:26</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>一，概念</h1>
+<ul>
+<li>需求协商的<mark><strong>目标</strong></mark>：
+<ul>
+<li>识别需求冲突；</li>
+<li>分析需求冲突的原因；</li>
+<li>通过适当决策解决冲突；</li>
+<li>记录冲突解决方案和原理。</li>
+</ul>
+</li>
+<li><strong>明确定义的目标</strong>可以对冲突解决提供支持</li>
+<li><strong>场景</strong>支持冲突的分析，也有助于冲突的解决</li>
+</ul>
+<h1>二，冲突管理</h1>
+<ul>
+<li>
+<p><strong>冲突管理</strong>包含4项活动：</p>
+<ul>
+<li>识别冲突</li>
+<li>分析冲突(识别冲突类型)</li>
+<li>解决冲突</li>
+<li>记录冲突解决方案</li>
+</ul>
+</li>
+<li>
+<p><mark><strong>冲突类型</strong></mark>包括：</p>
+<ul>
+<li><strong>数据冲突</strong> ：缺少信息或信息错误，或不同理解产生（涉众得到的需求是被误导或不完整，或涉众对需求含义产生了不同理解）</li>
+<li><strong>利益冲突</strong> ：涉众主、客观利益不同或目标不同（涉众之间对待开发系统的目标或利益相互矛盾）</li>
+<li><strong>价值冲突</strong> ：涉众评价问题采用不同准则，文化差异（涉众对待开发系统需求的评价不同，或者认为其重要性不同，就会出现价值冲突）</li>
+<li><strong>关系冲突</strong> ：涉众之间消极的人际交往行为</li>
+<li><strong>结构冲突</strong> ：涉众之间权利的不平衡引起</li>
+</ul>
+</li>
+<li>
+<p>在确定冲突类型时，先检查是否为数据冲突，然后看是否为利益冲突，最后考虑价值冲突。（<strong>数据冲突—利益冲突—价值冲突</strong>）</p>
+<ul>
+<li>检查数据冲突</li>
+<li>了解涉众利益</li>
+<li>阐明涉众的价值背景</li>
+</ul>
+</li>
+<li>
+<p><mark><strong>解决冲突</strong></mark>的3种策略：</p>
+<ul>
+<li><strong>协商</strong>：冲突各方协商解决方案（让冲突各方交换信息、论据和观点）！！协商费时长</li>
+<li><strong>创造性的解决方案</strong>：提出更好的方案解决冲突（冲突各方抛弃他们原来的观点，寻找各方都能接受的新观点）！！<strong>缺点</strong>：可能十分耗时，也可能对其他需求产生影响</li>
+<li><strong>决定</strong>：由上级做出支持某个冲突方的决定。（如果冲突各方相持不下，由具有决策权的个人或小组(通常为上级或客户)做出决定解决冲突）
+<ul>
+<li><strong>优点</strong>：快速。避免浪费过多时间。</li>
+<li><strong>弊端</strong>：观点被忽略的一方积极性受打击。因此应优先采用协商和创新方案解决。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><mark><strong>不同的冲突的不同的解决方案</strong></mark></p>
+<ul>
+<li>
+<p><strong>数据冲突</strong>：优先采用<strong>协商</strong>。</p>
+</li>
+<li>
+<p><strong>利益冲突</strong>：要让各方说明自己的利益，或可找到共同的利益。在此基础上协商，考虑各方的利益关切而达成共识，各方均受益</p>
+</li>
+<li>
+<p><strong>价值冲突</strong>：由各方价值观不同产生，优先采用<strong>创新解决方案</strong>解决。协商不一定有结果，因为价值观根深蒂固；通过决定或决议解决也是无赖之举，总会伤害某一方。</p>
+</li>
+<li>
+<table>
+<thead>
+<tr>
+<th>冲突类型</th>
+<th>协商</th>
+<th>创新方案</th>
+<th>决定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据冲突</td>
+<td>适用</td>
+<td>不适用</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>利益冲突</td>
+<td>适用</td>
+<td>有条件适用</td>
+<td>适用</td>
+</tr>
+<tr>
+<td>价值冲突</td>
+<td>有条件适用</td>
+<td>适用</td>
+<td>有条件适用</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>记录冲突和冲突解决方案</strong>：必须对冲突和冲突解决方案文档化。否则，会遗忘。已解决冲突可能会在后续活动再次发生。</p>
+</li>
+</ul>
+<h1>三，协商技术</h1>
+<ul>
+<li>
+<p>两种与协商有关的技术：<strong>双赢法</strong>和<strong>交互矩阵法</strong></p>
+<ul>
+<li>
+<p><strong>双赢法</strong>：尽量争取需求冲突双方的目标部分或全部达成。</p>
+</li>
+<li>
+<p>为了建立现实的期望，要<strong>遵循</strong>：</p>
+<ul>
+<li>共同讨论涉众的期望</li>
+<li>将自己置于涉众的位置了解他们的观点</li>
+<li>期望应该基于客观的准则定义</li>
+<li>期望应该以经验为导向。</li>
+</ul>
+</li>
+<li>
+<p><strong>交互矩阵</strong>：对需求重叠或冲突状况进行描述和记录的方法，使用可视化表格。</p>
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>需求1</th>
+<th>需求2</th>
+<th>需求3</th>
+<th>需求4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>需求2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>需求3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>需求4</td>
+<td>1</td>
+<td>0</td>
+<td>1000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>和</td>
+<td>2</td>
+<td>0</td>
+<td>1001</td>
+<td>1001</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>两个需求独立(无冲突或重叠)，则在交叉格填<mark><strong>0</strong></mark>；如果冲突就填<mark><strong>1</strong></mark>；如果重叠就填<mark><strong>1000</strong></mark>。</li>
+<li><strong>对角线上为0。上三角和下三角对称</strong>。</li>
+<li>每列求和。<strong>除以1000的商</strong>为与该需求<strong>重叠</strong>的需求数，<strong>余数</strong>为与该需求<strong>冲突</strong>的需求数</li>
+<li>按该表逐个检查需求的冲突情况，工作量很大。一般只用该表<strong>对需求的重叠和冲突做可视化和文档化</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>重点！！！</h1>
+<ul>
+<li>不同涉众的需求可能有冲突，是客观存在</li>
+<li>需求协商就是要<strong>识别冲突，分析冲突，解决冲突，记录冲突解决方案</strong>。</li>
+<li>冲突类型主要有<strong>数据冲突，利益冲突，价值冲突</strong>。</li>
+<li>冲突解决可以采用<strong>协商、创新解决方案和决定方法解决</strong>。</li>
+<li>一般数据冲突适合采用协商解决；利益冲突适合用协商或决定解决；价值冲突适合用创新解决方案解决。协商和决定在某些条件用来解决价值冲突；创新解决方案有时也用于利益冲突解决。</li>
+<li><strong>记录冲突和冲突的解决方案，是为了避免冲突重复发生，跟踪冲突。</strong></li>
+<li><strong>双赢法</strong>是争取最佳冲突解决方案的做法；</li>
+<li><strong>交互矩阵</strong>只是一个可视化和文档化冲突的方法</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/11/11/2024.11.10-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%8D%8F%E5%95%86/">http://brando-r.github.io/2024/11/11/2024.11.10-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E5%8D%8F%E5%95%86/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/11/2024.11.11-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E9%9C%80%E6%B1%82%E7%A1%AE%E8%AE%A4/">软件需求与建模13——需求确认</a>
+            
+            
+            <a class="next" rel="next" href="/2024/11/09/2024.11.09-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E7%B3%BB%E7%BB%9F%E9%A1%BA%E5%BA%8F%E5%9B%BE%E4%B8%8E%E6%93%8D%E4%BD%9C%E5%A5%91%E7%BA%A6/">软件需求与建模11——系统顺序图与操作契约</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>
