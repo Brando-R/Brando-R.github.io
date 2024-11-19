@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>软件需求与建模16——分析与设计建模 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件需求与建模16——分析与设计建模</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 16, 2024&nbsp;&nbsp;19:53:41</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>一，分析概述</h1>
+<ul>
+<li>分析活动是<strong>对系统功能的结构化</strong>，即<strong>将系统功能落实到具体的抽象对象——分析类</strong>。</li>
+<li>分析活动<strong>由开发团队主导</strong>，是设计实现的开端</li>
+<li><mark>分析活动的<strong>目标</strong></mark>是得到与平台和技术无关，仅与系统需求有关，不易受变化影响，非常稳定的分析模型。</li>
+<li>分析模型从开发人员视角，在逻辑上验证需求是否可以实现，是否自相矛盾（与需求过程中冲突识别不同）。同时，也为后续的设计和实现提供基础。</li>
+<li>分析模型主要由包含了<strong>当前全部“用例实现分析”的“分析包”构成</strong></li>
+</ul>
+<h1>二，分析模型建立</h1>
+<ul>
+<li>
+<p><strong>用例实现分析</strong>以<strong>分析类</strong>之间的协作，说明参与者和系统如何实现用例描述的功能。</p>
+</li>
+<li>
+<p>用例实现分析也称为“鲁棒性分析”（<strong>健壮性分析</strong>）</p>
+</li>
+<li>
+<p>鲁棒性分析过程分<strong>三步</strong>：（“鲁棒图”）</p>
+<ul>
+<li>查看用例描述中的每一语句；</li>
+<li>确定该语句所指动作需哪些界面、实体和控制对象参与；</li>
+<li>画出这些对象及它们的关系。</li>
+</ul>
+</li>
+<li>
+<p><mark><strong>鲁棒性分析的目的</strong></mark>是为了检查用例所述功能在逻辑上，或理想情况下是否可以实现。</p>
+</li>
+<li>
+<p>鲁棒性分析中识别实现用例的<mark><strong>三种分析类</strong></mark>：</p>
+<ul>
+<li><mark><strong>界面类</strong></mark>：负责与系统参与者的交互，即承担与参与者交互的职责。可能是人机接口，也可能是系统接口。</li>
+<li><mark><strong>实体类</strong></mark>：代表领域对象。其中，需要永久保存的对象要存放在文件或数据库中。</li>
+<li><mark><strong>控制类</strong></mark>：实现不适合界面和实体类实现的功能。控制类是增加稳定性的关键。</li>
+</ul>
+</li>
+<li>
+<p>三种类可以从<strong>表现(Presentation)、行为(Behavior)、信息(Information)三个维度描述系统</strong>。</p>
+</li>
+<li>
+<p>每种类别的类，至少具有<strong>两个维度</strong>的信息，这<strong>不同于传统功能/数据分割的结构化分析方法</strong>，同时可以提供抗变化的稳定模型。</p>
+</li>
+<li>
+<p><strong>将系统分成三层</strong>。实体类一层，控制类一层，界面类一层（与MVC模式一致）</p>
+</li>
+<li>
+<p>识别分析类经验法则：<u>每一个用例，首先给定一个界面类、一个控制类，然后参考从用例文本中识别出的领域类，确定本用例需要哪些实体类参与。在此基础上，根据需要适当增减。</u></p>
+</li>
+<li>
+<p>识别出分析类后，再考虑用例所描述的功能(流程)是否可以落实(分配)到这些类上。<mark>方法是</mark>画分析类在用例流程中的动态关联。<strong>因为这种图表示了分析类之间不受外界影响的强壮关系，故称为“鲁棒图”</strong></p>
+</li>
+<li>
+<p><strong>举例：登录用例的分析</strong></p>
+<ul>
+<li>用例名：登录系统</li>
+<li>参与者：注册用户</li>
+<li>前置条件：用户已进入系统主页</li>
+<li>主要流程：
+<ol>
+<li>用户选择登录，系统显示登录页面；</li>
+<li>用户在登录页输入用户名，密码，确认登录，系统验证用户资料；</li>
+<li>系统显示登录成功。</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/11/19/YriNwRJ8CMH1P97.png" alt="分析模型"></p>
+</li>
+</ul>
+<h1>三，设计概述</h1>
+<ul>
+<li>在分析模型的基础上，增加实现的考虑，就得到设计模型，<mark><strong>实现考虑主要包括</strong></mark>：
+<ul>
+<li>使用何种架构（以架构为中心）；</li>
+<li>使用何种编程语言和运行平台</li>
+<li>使用何种中间件（第三方组件）</li>
+<li>使用何种应用框架</li>
+<li>使用何种数据库</li>
+</ul>
+</li>
+<li>在模型中增加上述因素的考虑，往往涉及拆分或合并一些控制类，增加一些<strong>控制类</strong>等。</li>
+<li>确定实现的参与类后，再明确各参与类有何动态关系，并进而确定各参与类之间传送的消息。这<strong>通过画顺序图或通信图</strong>达成。</li>
+<li>由此也就明确了各参与类的职责(用方法实现)。</li>
+</ul>
+<h1>四，设计模型举例</h1>
+<ul>
+<li>
+<p>以登录系统用例为例。</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="http://xn--Asp-x41e007a67c083a0yycd1d.Net">如果决定采用Asp.Net</a> Core MVC框架实现，</p>
+</li>
+<li>
+<p>使用C#编程，</p>
+</li>
+<li>
+<p>使用框架包含的Identity(身份识别) 和EF(实体框架)组件，</p>
+</li>
+<li>
+<p>使用Sql Server数据库存放数据，通过User表存放客户信息。</p>
+</li>
+<li>
+<p>则登录时需要涉及的参与类包括：</p>
+<p><img src="https://s2.loli.net/2024/11/19/nguFUIOKEDLQhWc.png" alt="设计模型1"></p>
+<p><img src="https://s2.loli.net/2024/11/19/u59pNhLzA2qjZnX.png" alt="设计模型2"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>从图中，可以识别出有关控制类的操作。</p>
+</li>
+<li>
+<p>属性，在分析阶段就可以定出。</p>
+</li>
+<li>
+<p>在交互图的基础上，可以画出设计类图。</p>
+</li>
+<li>
+<p>如果对每一个用例作这样的分析设计，就得到了完整的设计模型。</p>
+</li>
+<li>
+<p>设计模型可以直接转化为代码，即实现模型。</p>
+</li>
+</ul>
+<h1>小结</h1>
+<ul>
+<li>分析模型是从需求模型导出的逻辑模型，未考虑实现细节</li>
+<li>分析模型的建立主要是分析用例需要哪些分析类参与实现。分析类分为三种：界面、控制、实体。分析类之间的动态关系，是稳定的，不受变化影响的，为Robustness Diag.</li>
+<li>设计模型在分析模型的基础上加上实现细节</li>
+<li>获得设计模型的主要途径是在分析出设计类的基础上，画用例实现时各设计对象之间的顺序图或通信图（统称交互图Interaction Diag.），得到各设计类的操作，并将结果在类图中画出。</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2024/11/16/2024.11.16-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%BB%BA%E6%A8%A1/">http://brando-r.github.io/2024/11/16/2024.11.16-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%BB%BA%E6%A8%A1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/11/16/2024.11.16-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E8%BD%AF%E4%BB%B6%E5%BB%BA%E6%A8%A1%E5%8F%8AUML%E7%AE%80%E4%BB%8B/">软件需求与建模15——软件建模及UML简介</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>
