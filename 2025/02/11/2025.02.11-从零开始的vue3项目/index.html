@@ -13,7 +13,7 @@
 
 
 
-<title>软件需求与建模16——分析与设计建模 | Hexo</title>
+<title>从零开始的Vue3项目——环境搭建 | Hexo</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">软件需求与建模16——分析与设计建模</h1>
+            <h1 class="post-title">从零开始的Vue3项目——环境搭建</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 16, 2024&nbsp;&nbsp;19:53:41</a>
+                        Date: <a href="#">February 11, 2025&nbsp;&nbsp;3:39:25</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E4%B8%8E%E5%BB%BA%E6%A8%A1/">软件需求与建模</a>
+                                <a href="/categories/Vue3%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">Vue3项目搭建</a>
                             
                         </span>
                     
@@ -218,135 +218,100 @@
         </header>
 
         <div class="post-content">
-            <h1>一，分析概述</h1>
-<ul>
-<li>分析活动是<strong>对系统功能的结构化</strong>，即<strong>将系统功能落实到具体的抽象对象——分析类</strong>。</li>
-<li>分析活动<strong>由开发团队主导</strong>，是设计实现的开端</li>
-<li><mark>分析活动的<strong>目标</strong></mark>是得到与平台和技术无关，仅与系统需求有关，不易受变化影响，非常稳定的分析模型。</li>
-<li>分析模型从开发人员视角，在逻辑上验证需求是否可以实现，是否自相矛盾（与需求过程中冲突识别不同）。同时，也为后续的设计和实现提供基础。</li>
-<li>分析模型主要由包含了<strong>当前全部“用例实现分析”的“分析包”构成</strong></li>
-</ul>
-<h1>二，分析模型建立</h1>
-<ul>
-<li>
-<p><strong>用例实现分析</strong>以<strong>分析类</strong>之间的协作，说明参与者和系统如何实现用例描述的功能。</p>
-</li>
-<li>
-<p>用例实现分析也称为“鲁棒性分析”（<strong>健壮性分析</strong>）</p>
-</li>
-<li>
-<p>鲁棒性分析过程分<strong>三步</strong>：（“鲁棒图”）</p>
-<ul>
-<li>查看用例描述中的每一语句；</li>
-<li>确定该语句所指动作需哪些界面、实体和控制对象参与；</li>
-<li>画出这些对象及它们的关系。</li>
-</ul>
-</li>
-<li>
-<p><mark><strong>鲁棒性分析的目的</strong></mark>是为了检查用例所述功能在逻辑上，或理想情况下是否可以实现。</p>
-</li>
-<li>
-<p>鲁棒性分析中识别实现用例的<mark><strong>三种分析类</strong></mark>：</p>
-<ul>
-<li><mark><strong>界面类</strong></mark>：负责与系统参与者的交互，即承担与参与者交互的职责。可能是人机接口，也可能是系统接口。</li>
-<li><mark><strong>实体类</strong></mark>：代表领域对象。其中，需要永久保存的对象要存放在文件或数据库中。</li>
-<li><mark><strong>控制类</strong></mark>：实现不适合界面和实体类实现的功能。控制类是增加稳定性的关键。</li>
-</ul>
-</li>
-<li>
-<p>三种类可以从<strong>表现(Presentation)、行为(Behavior)、信息(Information)三个维度描述系统</strong>。</p>
-</li>
-<li>
-<p>每种类别的类，至少具有<strong>两个维度</strong>的信息，这<strong>不同于传统功能/数据分割的结构化分析方法</strong>，同时可以提供抗变化的稳定模型。</p>
-</li>
-<li>
-<p><strong>将系统分成三层</strong>。实体类一层，控制类一层，界面类一层（与MVC模式一致）</p>
-</li>
-<li>
-<p>识别分析类经验法则：<u>每一个用例，首先给定一个界面类、一个控制类，然后参考从用例文本中识别出的领域类，确定本用例需要哪些实体类参与。在此基础上，根据需要适当增减。</u></p>
-</li>
-<li>
-<p>识别出分析类后，再考虑用例所描述的功能(流程)是否可以落实(分配)到这些类上。<mark>方法是</mark>画分析类在用例流程中的动态关联。<strong>因为这种图表示了分析类之间不受外界影响的强壮关系，故称为“鲁棒图”</strong></p>
-</li>
-<li>
-<p><strong>举例：登录用例的分析</strong></p>
-<ul>
-<li>用例名：登录系统</li>
-<li>参与者：注册用户</li>
-<li>前置条件：用户已进入系统主页</li>
-<li>主要流程：
+            <h1>Vue3是什么？</h1>
+<p>Vue 3 项目是基于 Vue.js 3（一个用于构建用户界面的渐进式 JavaScript 框架）开发的前端应用。Vue 3 是 Vue.js 的最新主要版本，于 2020 年发布，带来了许多改进和新特性，使其更高效、灵活且适合构建现代 Web 应用。</p>
+<h2 id="Vue-3-的核心特点">Vue 3 的核心特点</h2>
 <ol>
-<li>用户选择登录，系统显示登录页面；</li>
-<li>用户在登录页输入用户名，密码，确认登录，系统验证用户资料；</li>
-<li>系统显示登录成功。</li>
+<li><strong>Composition API（组合式 API）</strong>
+<ul>
+<li>替代 Vue 2 的 Options API，提供更灵活的逻辑复用方式。</li>
+<li>通过 <code>setup()</code> 函数组织代码，将相关逻辑按功能组合，提高代码可读性和维护性。</li>
+<li>示例代码中的 <code>&lt;script setup&gt;</code> 语法是 Composition API 的简化写法。</li>
+</ul>
+</li>
+<li><strong>响应式系统升级</strong>
+<ul>
+<li>使用 <code>Proxy</code> 替代 <code>Object.defineProperty</code>，支持更全面的数据监听（如数组、动态属性）。</li>
+<li>响应式 API（如 <code>reactive</code>, <code>ref</code>, <code>computed</code>）让状态管理更直观。</li>
+</ul>
+</li>
+<li><strong>性能优化</strong>
+<ul>
+<li>更快的虚拟 DOM（基于编译时优化，如静态节点提升）。</li>
+<li>更小的包体积（Tree-shaking 支持，按需引入功能）。</li>
+</ul>
+</li>
 </ol>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2024/11/19/YriNwRJ8CMH1P97.png" alt="分析模型"></p>
-</li>
-</ul>
-<h1>三，设计概述</h1>
+<h2 id="Vue-3-项目的典型技术栈">Vue 3 项目的典型技术栈</h2>
+<ol>
+<li><strong>核心库</strong>
 <ul>
-<li>在分析模型的基础上，增加实现的考虑，就得到设计模型，<mark><strong>实现考虑主要包括</strong></mark>：
+<li><strong>Vue 3</strong>：框架核心。</li>
+<li>**Vue Router **：路由管理。</li>
+<li><strong>Pinia/Vuex 4</strong>：状态管理（推荐使用 Pinia，专为 Vue 3 设计）。</li>
+</ul>
+</li>
+<li><strong>构建工具</strong>
 <ul>
-<li>使用何种架构（以架构为中心）；</li>
-<li>使用何种编程语言和运行平台</li>
-<li>使用何种中间件（第三方组件）</li>
-<li>使用何种应用框架</li>
-<li>使用何种数据库</li>
+<li><strong>Vite</strong>：新一代构建工具，极速热更新（替代 Webpack）。</li>
+<li><strong>Vue CLI</strong>：传统脚手架（逐渐被 Vite 取代）。</li>
 </ul>
 </li>
-<li>在模型中增加上述因素的考虑，往往涉及拆分或合并一些控制类，增加一些<strong>控制类</strong>等。</li>
-<li>确定实现的参与类后，再明确各参与类有何动态关系，并进而确定各参与类之间传送的消息。这<strong>通过画顺序图或通信图</strong>达成。</li>
-<li>由此也就明确了各参与类的职责(用方法实现)。</li>
+<li><strong>UI 框架</strong>
+<ul>
+<li><strong>Element  Plus</strong>：延续了 Element-UI 的设计语言和功能，同时全面适配 Vue 3 的新特性。</li>
+<li><strong>Vant</strong>：轻量级移动端组件库，贴近移动端交互习惯，支持主题定制。</li>
 </ul>
-<h1>四，设计模型举例</h1>
+</li>
+<li><strong>其他工具</strong>
+<ul>
+<li><strong>TypeScript</strong>：增强代码类型安全。</li>
+<li><strong>ESLint/Prettier</strong>：代码规范与格式化。</li>
+<li><strong>Axios</strong>：HTTP 请求库。</li>
+</ul>
+</li>
+</ol>
+<h1>环境搭建</h1>
+<h2 id="使用NVM版本管理工具">使用NVM版本管理工具</h2>
+<p><strong>NVM（Node Version Manager）</strong> 是一个用于管理多个 <strong>Node.js</strong> 版本的工具，主要解决开发中因不同项目依赖不同 Node.js 版本而导致的兼容性问题。</p>
 <ul>
 <li>
-<p>以登录系统用例为例。</p>
-<ul>
-<li>
-<p>如果决定采用 <a target="_blank" rel="noopener" href="http://Asp.Net">Asp.Net</a> Core MVC框架实现，</p>
+<p>首先，需要把本地的node.js全部删除掉，把对应的环境卸载。</p>
 </li>
 <li>
-<p>使用C#编程，</p>
+<p>然后直接安装nvm，nvm下载地址： <a target="_blank" rel="noopener" href="https://nvm.uihtm.com">https://nvm.uihtm.com</a>，不需要该配置，直接，默认下载</p>
 </li>
 <li>
-<p>使用框架包含的Identity(身份识别) 和EF(实体框架)组件，</p>
+<p>打开vscode命令行（ctrl+·(1旁边)），输入nvm确认已下载</p>
 </li>
 <li>
-<p>使用Sql Server数据库存放数据，通过User表存放客户信息。</p>
+<p><strong>使用nvm下载指定node.js版本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 20.16.0	//版本号</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>则登录时需要涉及的参与类包括：</p>
-<p><img src="https://s2.loli.net/2024/11/19/nguFUIOKEDLQhWc.png" alt="设计模型1"></p>
-<p><img src="https://s2.loli.net/2024/11/19/u59pNhLzA2qjZnX.png" alt="设计模型2"></p>
+<p>查看已下载的依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm list</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>切换指定node.js版本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use 20.16.0	//版本号</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>查看当前node.js版本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-</li>
-<li>
-<p>从图中，可以识别出有关控制类的操作。</p>
-</li>
-<li>
-<p>属性，在分析阶段就可以定出。</p>
-</li>
-<li>
-<p>在交互图的基础上，可以画出设计类图。</p>
-</li>
-<li>
-<p>如果对每一个用例作这样的分析设计，就得到了完整的设计模型。</p>
-</li>
-<li>
-<p>设计模型可以直接转化为代码，即实现模型。</p>
-</li>
-</ul>
-<h1>小结</h1>
-<ul>
-<li>分析模型是从需求模型导出的逻辑模型，未考虑实现细节</li>
-<li>分析模型的建立主要是分析用例需要哪些分析类参与实现。分析类分为三种：界面、控制、实体。分析类之间的动态关系，是稳定的，不受变化影响的，为Robustness Diag.</li>
-<li>设计模型在分析模型的基础上加上实现细节</li>
-<li>获得设计模型的主要途径是在分析出设计类的基础上，画用例实现时各设计对象之间的顺序图或通信图（统称交互图Interaction Diag.），得到各设计类的操作，并将结果在类图中画出。</li>
-</ul>
+<h2 id="使用Vite创建Vue项目">使用Vite创建Vue项目</h2>
+<p>Vite 是新一代的前端构建工具，由 Vue.js 作者尤雨溪（Evan You）团队开发，旨在提供更快的开发体验和更高效的构建流程。它的核心理念是**“按需编译”<strong>，通过利用现代浏览器的原生 ES 模块（ESM）能力，彻底优化了传统构建工具（如 Webpack）在开发阶段的性能瓶颈。优点在于</strong>快速构建项目**。</p>
+<p>Vite官服文档 <a target="_blank" rel="noopener" href="https://cn.vitejs.dev/">https://cn.vitejs.dev/</a></p>
+<p>通过查看官方文档我们了解到4种安装方法。我通常使用npm，如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># npm 7+，需要添加额外的 --：</span><br><span class="line">npm create vite@latest my-vue-app -- --template vue</span><br></pre></td></tr></table></figure>
+<p>此时，我们发现当前目录下多了一个项目，通过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd my-vue-app	//进入项目</span><br></pre></td></tr></table></figure>
+<p>进入项目后，我们发现，该项目是没有node module依赖的，我们可以通过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i	//下载依赖</span><br></pre></td></tr></table></figure>
+<p>到这一步我们就已经创建好一个 Vite + Vue 项目了，使用下面命令可启动项目。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -361,7 +326,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://brando-r.github.io/2024/11/16/2024.11.16-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%BB%BA%E6%A8%A1/">http://brando-r.github.io/2024/11/16/2024.11.16-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%BB%BA%E6%A8%A1/</a></span>
+                        <span><a href="http://brando-r.github.io/2025/02/11/2025.02.11-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84vue3%E9%A1%B9%E7%9B%AE/">http://brando-r.github.io/2025/02/11/2025.02.11-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84vue3%E9%A1%B9%E7%9B%AE/</a></span>
                     </p>
                 
                 
@@ -385,7 +350,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E7%AC%94%E8%AE%B0/"># 笔记</a>
+                        <a href="/tags/Vue3/"># Vue3</a>
                     
                         
                 </span>
@@ -398,10 +363,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2025/02/11/2025.02.11-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84vue3%E9%A1%B9%E7%9B%AE/">从零开始的Vue3项目——环境搭建</a>
             
-            
-            <a class="next" rel="next" href="/2024/11/16/2024.11.16-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E8%BD%AF%E4%BB%B6%E5%BB%BA%E6%A8%A1%E5%8F%8AUML%E7%AE%80%E4%BB%8B/">软件需求与建模15——软件建模及UML简介</a>
+            <a class="next" rel="next" href="/2024/11/16/2024.11.16-%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82-%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%BB%BA%E6%A8%A1/">软件需求与建模16——分析与设计建模</a>
             
         </section>
 
