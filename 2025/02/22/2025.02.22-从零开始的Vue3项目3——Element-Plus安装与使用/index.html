@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Brando-R(猫猫)">
+
+
+
+
+
+<title>从零开始的Vue3项目3——Element-Plus安装与使用 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Brando-R&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Brando-R&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">从零开始的Vue3项目3——Element-Plus安装与使用</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Brando-R(猫猫)</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 22, 2025&nbsp;&nbsp;19:26:38</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Vue3%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">Vue3项目搭建</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1>什么是Element-Plus？</h1>
+<p><strong>Element-Plus</strong> 是一款基于 Vue 3 的 <strong>开源 UI 组件库</strong>，专为开发者提供丰富的界面组件和高效的开发体验。它是 Vue 2 时代流行的 Element UI 的升级版本，针对 Vue 3 的特性（如 Composition API、TypeScript 支持等）进行了全面适配和优化。</p>
+<h2 id="核心特性"><strong>核心特性</strong></h2>
+<ol>
+<li><strong>丰富的组件库</strong><br>
+提供 50+ 常用组件，如按钮、表单、表格、对话框、导航菜单、弹窗、日期选择器等，覆盖企业级中后台系统的常见需求。</li>
+<li><strong>Vue 3 原生支持</strong><br>
+完全适配 Vue 3 的响应式系统和 Composition API，同时支持 TypeScript，提供类型声明文件。</li>
+<li><strong>主题定制</strong><br>
+通过 SCSS 变量或在线主题生成工具，轻松自定义主题颜色、字体、边框等样式，满足品牌化需求。</li>
+<li><strong>国际化（i18n）</strong><br>
+内置多语言支持（如中文、英文等），方便开发全球化应用。</li>
+<li><strong>响应式设计</strong><br>
+组件默认适配不同屏幕尺寸，支持移动端和桌面端。</li>
+<li><strong>高性能与轻量</strong><br>
+优化组件渲染效率，支持按需引入（减少打包体积），适合复杂项目。</li>
+</ol>
+<hr>
+<h1>Vue3 生态中的UI框架</h1>
+<p>在 Vue 3 生态中，有许多优秀的 <strong>UI 框架</strong>可供选择，它们各有特点，适用于不同的场景。以下是主流的 Vue 3 UI 框架及其核心特性：</p>
+<h3 id="1-Element-Plus"><strong>1. Element-Plus</strong></h3>
+<ul>
+<li><strong>定位</strong>：企业级中后台系统</li>
+<li><strong>特点</strong>：
+<ul>
+<li>继承自 Element UI（Vue 2 版本），全面适配 Vue 3 和 TypeScript。</li>
+<li>提供 50+ 组件（表格、表单、弹窗等），设计风格简洁。</li>
+<li>支持按需加载、主题定制和国际化。</li>
+</ul>
+</li>
+<li><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://element-plus.org/">element-plus.org</a></li>
+</ul>
+<p><strong>适用场景</strong>：后台管理系统、数据看板、快速搭建表单表格。</p>
+<hr>
+<h3 id="2-Vuetify"><strong>2. Vuetify</strong></h3>
+<ul>
+<li><strong>定位</strong>：Material Design 风格的全面组件库</li>
+<li><strong>特点</strong>：
+<ul>
+<li>基于 Material Design 规范，提供丰富的交互组件（如卡片、底部导航、数据表格）。</li>
+<li>支持 SSR（服务端渲染）、PWA（渐进式 Web 应用）。</li>
+<li>高度可定制化主题和动态主题切换。</li>
+</ul>
+</li>
+<li><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://vuetifyjs.com/">vuetifyjs.com</a></li>
+</ul>
+<p><strong>适用场景</strong>：追求 Material Design 风格的应用，尤其是桌面端复杂交互场景。</p>
+<hr>
+<h3 id="3-Naive-UI"><strong>3. Naive UI</strong></h3>
+<ul>
+<li><strong>定位</strong>：轻量、灵活、高定制性</li>
+<li><strong>特点</strong>：
+<ul>
+<li>无预设主题色，开发者可完全自定义样式（通过 CSS 变量或 SCSS）。</li>
+<li>组件设计简洁，TypeScript 支持完善。</li>
+<li>按需加载无需插件，直接通过 <code>import</code> 引入。</li>
+</ul>
+</li>
+<li><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://www.naiveui.com/">www.naiveui.com</a></li>
+</ul>
+<p><strong>适用场景</strong>：需要高度定制化或对设计自由度要求高的项目。</p>
+<hr>
+<h3 id="4-Ant-Design-Vue"><strong>4. Ant Design Vue</strong></h3>
+<ul>
+<li><strong>定位</strong>：企业级产品（对标 React 的 Ant Design）</li>
+<li><strong>特点</strong>：
+<ul>
+<li>遵循 Ant Design 规范，提供与 React 版本一致的体验。</li>
+<li>组件丰富（包括图表、ProLayout 等高级组件）。</li>
+<li>支持暗黑模式、国际化、主题定制。</li>
+</ul>
+</li>
+<li><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://antdv.com/">antdv.com</a></li>
+</ul>
+<p><strong>适用场景</strong>：熟悉 Ant Design 设计规范的企业级应用。</p>
+<hr>
+<h3 id="5-Quasar-Framework"><strong>5. Quasar Framework</strong></h3>
+<ul>
+<li><strong>定位</strong>：全栈式开发框架（不仅仅是 UI 库）</li>
+<li><strong>特点</strong>：
+<ul>
+<li>支持构建 SPA、SSR、PWA、移动端应用（Cordova/Capacitor）、Electron 桌面应用。</li>
+<li>内置大量组件（甚至包括拖拽、图表等高级功能）。</li>
+<li>提供 CLI 工具，开箱即用。</li>
+</ul>
+</li>
+<li><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://quasar.dev/">quasar.dev</a></li>
+</ul>
+<p><strong>适用场景</strong>：需要跨平台（Web、移动、桌面）的全栈项目。</p>
+<hr>
+<h3 id="6-PrimeVue"><strong>6. PrimeVue</strong></h3>
+<ul>
+<li><strong>定位</strong>：功能丰富的企业级组件库</li>
+<li><strong>特点</strong>：
+<ul>
+<li>提供 90+ 组件（包括高级表格、图表、日历等）。</li>
+<li>支持多套主题（Material、Bootstrap 风格）和暗黑模式。</li>
+<li>内置无障碍（A11y）支持。</li>
+</ul>
+</li>
+<li><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://primevue.org/">primevue.org</a></li>
+</ul>
+<p><strong>适用场景</strong>：需要复杂交互的企业应用，尤其是国际化项目。</p>
+<hr>
+<h3 id="7-Headless-UI"><strong>7. Headless UI</strong></h3>
+<ul>
+<li><strong>定位</strong>：无样式组件库（仅逻辑层）</li>
+<li><strong>特点</strong>：
+<ul>
+<li>由 Tailwind CSS 团队开发，提供完全无样式的交互组件（如下拉菜单、模态框）。</li>
+<li>开发者需自行编写样式（通常结合 Tailwind CSS）。</li>
+<li>适合追求极致定制化或已有设计系统的项目。</li>
+</ul>
+</li>
+<li><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://headlessui.com/">headlessui.com</a></li>
+</ul>
+<p><strong>适用场景</strong>：需要完全自定义 UI 但复用交互逻辑的项目。</p>
+<hr>
+<h3 id="8-Vant-Vant-4"><strong>8. Vant (Vant 4)</strong></h3>
+<ul>
+<li><strong>定位</strong>：移动端优先的轻量级组件库</li>
+<li><strong>特点</strong>：
+<ul>
+<li>专为移动端优化，支持手势操作、适配小屏。</li>
+<li>提供常见移动端组件（如轮播、下拉刷新、地址选择器）。</li>
+<li>按需加载和主题定制简单。</li>
+</ul>
+</li>
+<li><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://vant-ui.github.io/">vant-ui.github.io</a></li>
+</ul>
+<p><strong>适用场景</strong>：移动端 H5 应用、小程序开发。</p>
+<hr>
+<h3 id="选择建议"><strong>选择建议</strong></h3>
+<ol>
+<li><strong>企业级后台</strong>：Element-Plus、Ant Design Vue、PrimeVue。</li>
+<li><strong>移动端 H5</strong>：Vant、Varlet（另一个轻量 Vue 3 移动端库）。</li>
+<li><strong>全平台开发</strong>：Quasar。</li>
+<li><strong>高度定制化</strong>：Naive UI、Headless UI + Tailwind CSS。</li>
+<li><strong>Material Design</strong>：Vuetify。</li>
+</ol>
+<hr>
+<h3 id="关键对比"><strong>关键对比</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">框架</th>
+<th style="text-align:left">体积</th>
+<th style="text-align:left">设计风格</th>
+<th style="text-align:left">特色功能</th>
+<th style="text-align:left">学习曲线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Element-Plus</strong></td>
+<td style="text-align:left">中等</td>
+<td style="text-align:left">中性简洁</td>
+<td style="text-align:left">中后台高频组件</td>
+<td style="text-align:left">低</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Vuetify</strong></td>
+<td style="text-align:left">较大</td>
+<td style="text-align:left">Material Design</td>
+<td style="text-align:left">主题动态切换、SSR</td>
+<td style="text-align:left">中</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Naive UI</strong></td>
+<td style="text-align:left">小</td>
+<td style="text-align:left">无预设风格</td>
+<td style="text-align:left">极致灵活</td>
+<td style="text-align:left">中</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Quasar</strong></td>
+<td style="text-align:left">较大</td>
+<td style="text-align:left">多主题</td>
+<td style="text-align:left">全栈开发、跨平台</td>
+<td style="text-align:left">高</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="总结"><strong>总结</strong></h3>
+<p>Vue 3 的 UI 框架生态非常丰富，选择时需综合考虑：</p>
+<ul>
+<li><strong>项目类型</strong>（中后台、移动端、跨平台）</li>
+<li><strong>设计需求</strong>（是否需要遵循特定设计规范）</li>
+<li><strong>技术栈</strong>（是否依赖 TypeScript、Tailwind CSS 等）</li>
+<li><strong>维护活跃度</strong>（GitHub Star、Issue 处理速度）。</li>
+</ul>
+<p>建议优先选择社区活跃、文档完善的框架（如 Element-Plus、Vuetify），以降低长期维护成本。</p>
+<hr>
+<h1>Element-Plus安装与使用（ 其他框架的使用同理，主要参考官网的安装说明 ）</h1>
+<p><strong>Element-Plus 官网</strong> ： <a target="_blank" rel="noopener" href="https://element-plus.org/">https://element-plus.org/</a></p>
+<ol>
+<li>
+<p><strong>安装</strong></p>
+<ul>
+<li>通过查看官方文档我们了解到3种Element-Plus的安装方法。我通常使用npm，如下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install element-plus --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你的网络环境不佳，推荐使用 <a target="_blank" rel="noopener" href="https://github.com/cnpm/cnpm">cnpm</a> 或使用 <a target="_blank" rel="noopener" href="https://npmmirror.com/">npmmirror</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>引入</strong></p>
+<ul>
+<li><strong>完整引入</strong></li>
+</ul>
+<p>如果你对打包后的文件大小不是很在乎，那么使用完整导入会更方便。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ElementPlus</span> <span class="keyword">from</span> <span class="string">&#x27;element-plus&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;element-plus/dist/index.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title class_">ElementPlus</span>)</span><br><span class="line">app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>按需导入</strong></li>
+</ul>
+<p>您需要使用额外的插件来导入要使用的组件。</p>
+<ul>
+<li><strong>自动导入 ( 推荐 )</strong></li>
+</ul>
+<p>首先你需要安装<code>unplugin-vue-components</code> 和 <code>unplugin-auto-import</code>这两款插件</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D unplugin-vue-components unplugin-auto-import</span><br></pre></td></tr></table></figure>
+<p>然后把下列代码插入到你的 <code>Vite</code> 或 <code>Webpack</code> 的配置文件中</p>
+<p><strong>Vite</strong></p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//	vite.config.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">AutoImport</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Components</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ElementPlusResolver</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/resolvers&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">      <span class="attr">resolvers</span>: [<span class="title class_">ElementPlusResolver</span>()],</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="title class_">Components</span>(&#123;</span><br><span class="line">      <span class="attr">resolvers</span>: [<span class="title class_">ElementPlusResolver</span>()],</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>重启项目</strong>（ 重新运行项目 ）</p>
+</li>
+<li>
+<p><strong>使用组件</strong></p>
+</li>
+</ol>
+<p>在 Vue 文件中直接使用组件（无需手动导入）组件可以在官网中选择 ：</p>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot;&gt;按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-input v-model=&quot;inputValue&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Brando-R(猫猫)</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://brando-r.github.io/2025/02/22/2025.02.22-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Vue3%E9%A1%B9%E7%9B%AE3%E2%80%94%E2%80%94Element-Plus%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">http://brando-r.github.io/2025/02/22/2025.02.22-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Vue3%E9%A1%B9%E7%9B%AE3%E2%80%94%E2%80%94Element-Plus%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Vue3/"># Vue3</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/02/22/2025.02.22-%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Vue3%E9%A1%B9%E7%9B%AE2%E2%80%94%E2%80%94Router%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%BC%95%E5%85%A5/">从零开始的Vue3项目2——Router路由配置引入</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Brando-R(猫猫) | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+<!-- 雪花特效 -->
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript"
+src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 引入jQuery -->
+<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效2 -->
+<script type="text/javascript" src="/js/snow2.js"></script>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+<!-- 蜘蛛网特效 -->
+<script>
+    !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            <!-- 获取指定标签名的元素集合 -->
+                        return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1), //置于主页面背后
+                o: n(i, "opacity", .5), //线条透明度
+                c: n(i, "color", "0,0,0"), //线条颜色
+                n: n(i, "count", 100) //线条数量
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth ||
+            document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight ||
+            document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 :
+                1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1,
+                1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l
+                = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o,
+                i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t /
+                2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y),
+                r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame
+        || window.mozRequestAnimationFrame || window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z +
+        ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+    } ();
+    </script>
+</html>
